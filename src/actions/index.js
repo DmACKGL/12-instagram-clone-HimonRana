@@ -1,3 +1,4 @@
+// FETCHAR API I DENNA ACTION
 import {
   FETCH_PHOTOS_START,
   FETCH_PHOTOS_SUCCESS,
@@ -6,7 +7,7 @@ import {
 
 import { API_URL } from "config/constants";
 
-const url = `${API_URL}/photos`;
+const url = `${"https://5a9a92c7951e110012914b67.mockapi.io/api/v1"}/photos`;
 
 export const requestPhotos = () => ({
   type: FETCH_PHOTOS_START

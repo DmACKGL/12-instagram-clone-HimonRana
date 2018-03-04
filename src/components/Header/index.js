@@ -9,7 +9,7 @@ const Header = () => (
             <div className="frow row-start">
                 <h1 className="Header__logo">
                     <Link to="/" className="Header__logo-link">
-                        Beardstagram
+                        Buntstagram
                         <i className="fa fa-instagram Header__instagram-icon" aria-hidden="true"></i>
                     </Link>
                 </h1>
