@@ -14,33 +14,40 @@ export class SignInForm extends Component {
   render() {
     const { isAuthenticating } = this.props;
     return (
-      <form className="SignInForm__root" onSubmit={this.handleSubmit.bind(this)}>
-        <fieldset>
-          <input
-            type="text"
-            placeholder="Email"
-            className="SignInForm__input"
-          />
-        </fieldset>
-        <fieldset>
-          <input
-            type="password"
-            placeholder="Password"
-            className="SignInForm__input"
-          />
-        </fieldset>
-        <button
-          className="SignInForm__button"
-          disabled={isAuthenticating}
-          type="submit"
-        >
-          {isAuthenticating ? (
-            <i className="fa fa-spinner fa-pulse fa-3x fa-fw SignInForm__spinner" />
-          ) : (
-            "Log In"
-          )}
-        </button>
-      </form>
+      <div className="signInDiv">
+        <div className="signInBox">
+          <img src="https://api.adorable.io/avatars/100/bulle@adorable.png" className="userAvatar" />
+          <form className="SignInForm__root" onSubmit={this.handleSubmit.bind(this)}>
+            <fieldset>
+              <h2>Log in here</h2>
+              <input
+                type="text"
+                placeholder="Email"
+                className="SignInForm__input"
+              />
+            </fieldset>
+            <fieldset>
+              <input
+                type="password"
+                placeholder="Password"
+                className="SignInForm__input"
+              />
+            </fieldset>
+            <button
+              className="SignInForm__button"
+              disabled={isAuthenticating}
+              type="submit"
+            >
+              {isAuthenticating ? (
+                <i className="fa fa-spinner fa-pulse fa-3x fa-fw SignInForm__spinner" />
+              ) : (
+                "Log In"
+              )}
+            </button>
+            <a href="#">Forget Password</a>
+          </form>
+        </div> 
+      </div>
     );
   }
 }

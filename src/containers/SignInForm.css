@@ -1,13 +1,72 @@
-.SignInForm__input {
-  width: 100%;
+.signInDiv {
+  margin: 0;
+  padding: 0;
+  background: url('https://picsum.photos/1920/840/?random');
+  background-size: cover;
+  max-width: 100%;
+  height: -webkit-fill-available;
 }
+
+.signInBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 420px;
+  padding: 80px 40px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.signInBox a {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signInBox a:hover {
+  text-decoration: underline;
+}
+
+.userAvatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: calc(-100px/2);
+  left: calc(50% - 50px)
+}
+
+.SignInForm__root h2 {
+  margin: 0;
+  padding-bottom: 30px;
+  color: #fffb00;
+  text-align: center;
+}
+
+.SignInForm__root input,
+.SignInForm__root button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.SignInForm__input {
+  margin: 0;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+}
+
 
 .SignInForm__button,
 .SignInForm__button:hover {
-  display: block;
-  width: 100%;
-  background-color: #3897f0;
-  border-color: #3897f0;
+  background-color: #ff267e;
+  margin-top: 2em;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
   color: white;
   font-size: 16px;
   letter-spacing: 0.2px;
