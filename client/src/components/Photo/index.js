@@ -8,7 +8,27 @@ import './Photo.css';
 export class Photo extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      response: ''
+    }
   }
+
+  componentDidMount() {
+    this.apiCall();
+  }
+
+  apiCall() {
+    fetch('/users')
+      .then(res => res.json())
+      .then(res => {
+        this.setState({response: res})
+      })
+      .catch(err => console.log(err))
+  }
+
+
+
 
   render() {
     const { photo } = this.props;

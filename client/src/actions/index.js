@@ -7,7 +7,7 @@ import {
 
 import { API_URL } from "config/constants";
 
-const url = `${"https://5a9a92c7951e110012914b67.mockapi.io/api/v1"}/photos`;
+const url = `${API_URL}/photos`;
 
 export const requestPhotos = () => ({
   type: FETCH_PHOTOS_START
