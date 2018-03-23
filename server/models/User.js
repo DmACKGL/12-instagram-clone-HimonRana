@@ -13,8 +13,8 @@ var UserSchema = new mongoose.Schema({
         required: true
     },
     password: {
-        type:String, 
-        minlength: [8, 'Password must be longer then 8 characters'],
+        type: String, 
+        minlength: [4, 'Password must be longer then 2 characters'],
         required: true
     }
 });

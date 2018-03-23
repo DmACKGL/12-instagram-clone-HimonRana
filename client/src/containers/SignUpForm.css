@@ -53,15 +53,17 @@
     margin-bottom: 20px;
   }
   
-  .SignUpForm__input {
+  .name,
+  .email,
+  .password {
     margin: 0;
     border-bottom: 1px solid #fff;
     color: #fff;
   }
   
   
-  .SignUpForm__button,
-  .SignUpForm__button:hover {
+  .btn,
+  .btn:hover {
     background-color: #ff267e;
     margin-top: 2em;
     height: 40px;
@@ -73,7 +75,7 @@
     text-transform: capitalize;
   }
   
-  .SignUpForm__button:disabled {
+  .btn:disabled {
     background-color: #d3d3d3;
     border-color: #d3d3d3;
     cursor: not-allowed;

@@ -23,18 +23,20 @@ export class SignInForm extends Component {
               <input
                 type="text"
                 placeholder="Email"
-                className="SignInForm__input"
+                className="email"
+                required
               />
             </fieldset>
             <fieldset>
               <input
                 type="password"
                 placeholder="Password"
-                className="SignInForm__input"
+                className="password"
+                required
               />
             </fieldset>
             <button
-              className="SignInForm__button"
+              className="btn btn-button"
               disabled={isAuthenticating}
               type="submit"
             >
