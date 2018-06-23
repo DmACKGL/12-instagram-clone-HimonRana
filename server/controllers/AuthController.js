@@ -28,7 +28,7 @@ router.post('/login', function(req, res) {
             expiresIn: 86400 // Valid in seconds = 24 hours
         });
 
-        // Remove the password efore returning
+        // Remove the password before returning
         delete user.password;
         
         // if everything goes according plan
@@ -52,10 +52,8 @@ router.post('/register', function(req, res) {
             return res.status(500).send("An error occurred while trying to add information to the database " + error);
         } else {
             // Create a JWT token
-            var token = jwt.sign({ id: user._id }, config.secret, {
-                expiresIn: 86400 // Seconds - valid for 24 hours
-            });
-            return res.status(200).send({ authenticated: true, token: token });
+            return res.status(200).send({ user: user });
+            
         }
     });
 });

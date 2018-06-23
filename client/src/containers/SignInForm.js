@@ -1,15 +1,40 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 
+import { loginUser } from "../actions/loginUser";
 import "./SignInForm.css";
 
 export class SignInForm extends Component {
-  static propTypes = {
-    prop: PropTypes
-  };
+  
+  constructor() {
+    super();
 
-  handleSubmit() {}
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.dispatch(loginUser(this.state)).then(() => {
+      this.props.history.push('/');
+    });
+  }
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   this.props.dispatch(registerUser(this.state)).then(() => {
+  //     this.props.history.push('/signin');
+  //   });
 
   render() {
     const { isAuthenticating } = this.props;
@@ -20,21 +45,25 @@ export class SignInForm extends Component {
           <form className="SignInForm__root" onSubmit={this.handleSubmit.bind(this)}>
             <fieldset>
               <h2>Log in here</h2>
-              <input
+              <input onChange={this.handleChange.bind(this)}
                 type="text"
+                name="email"
                 placeholder="Email"
-                className="SignInForm__input"
+                className="email"
+                required
               />
             </fieldset>
             <fieldset>
-              <input
+              <input onChange={this.handleChange.bind(this)}
                 type="password"
+                name="password"
                 placeholder="Password"
-                className="SignInForm__input"
+                className="password"
+                required
               />
             </fieldset>
             <button
-              className="SignInForm__button"
+              className="btn btn-button"
               disabled={isAuthenticating}
               type="submit"
             >
@@ -52,10 +81,10 @@ export class SignInForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticating: state.isAuthenticating
-});
+// const mapStateToProps = state => ({
+//   isAuthenticating: state.isAuthenticating
+// });
 
-const mapDispatchToProps = {};
+// const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+export default withRouter(connect(null)(SignInForm));

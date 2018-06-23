@@ -1,16 +1,38 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 
+import { registerUser } from "../actions/registerUser";
 import "./SignUpForm.css";
 
 export class SignUpForm extends Component {
-  static propTypes = {
-    prop: PropTypes
-  };
+  
+    constructor() {
+    super();
+    
+      this.state = {
+        name: '',
+        email: '',
+        password: ''
+      };
+    }
+    
 
-  handleSubmit() {}
-
+    handleChange(event) {
+      this.setState({
+        [event.target.name]: event.target.value
+      });
+    }
+	
+	handleSubmit(event) {
+    event.preventDefault();
+    this.props.dispatch(registerUser(this.state)).then(() => {
+      this.props.history.push('/signin');
+    });
+  }
+  
+ 
   render() {
     const { isAuthenticating } = this.props;
     return (
@@ -20,35 +42,34 @@ export class SignUpForm extends Component {
           <form className="SignUpForm__root" onSubmit={this.handleSubmit.bind(this)}>
             <fieldset>
               <h2>Register here</h2>
-              <input
+              <input onChange={this.handleChange.bind(this)}
                 type="text"
                 placeholder="Name"
-                className="SignUpForm__input"
+                className="name"
+                name="name"
+                required
               />
             </fieldset>
             <fieldset>
-              <input
+              <input onChange={this.handleChange.bind(this)}
                 type="text"
                 placeholder="Email"
-                className="SignUpForm__input"
+                className="email"
+                name="email"
+                required
               />
             </fieldset>
             <fieldset>
-              <input
+              <input onChange={this.handleChange.bind(this)}
                 type="password"
                 placeholder="Password"
-                className="SignUpForm__input"
-              />
-            </fieldset>
-            <fieldset>
-              <input
-                type="password"
-                placeholder="Password again"
-                className="SignUpForm__input"
+                className="password"
+                name="password"
+                required
               />
             </fieldset>
             <button
-              className="SignUpForm__button"
+              className="btn btn-primary"
               disabled={isAuthenticating}
               type="submit"
             >
@@ -65,10 +86,12 @@ export class SignUpForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+/*const mapStateToProps = state => ({
   isAuthenticating: state.isAuthenticating
 });
 
 const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
+*/
+export default withRouter(connect(null)(SignUpForm));
