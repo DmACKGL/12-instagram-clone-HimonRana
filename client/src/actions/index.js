@@ -5,7 +5,7 @@ import {
   FETCH_PHOTOS_FAILURE
 } from "../constants";
 
-import { API_URL } from "config/constants";
+import { API_URL } from "../constants/config/constants";
 
 const url = `${API_URL}/photos`;
 
