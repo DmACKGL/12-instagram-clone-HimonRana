@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { registerUser } from "../actions/registerUser";
 import { withRouter } from 'react-router-dom';
 
+import { registerUser } from "../actions/registerUser";
 import "./SignUpForm.css";
 
 export class SignUpForm extends Component {
   
-	constructor() {
+    constructor() {
     super();
-    this.state = {
-      name: '',
-      email: '',
-      password: ''
-    };
-		
+    
+      this.state = {
+        name: '',
+        email: '',
+        password: ''
+      };
     }
     
 
@@ -25,41 +25,14 @@ export class SignUpForm extends Component {
       });
     }
 	
-
-	// handleSubmit() {}
 	handleSubmit(event) {
     event.preventDefault();
     this.props.dispatch(registerUser(this.state)).then(() => {
       this.props.history.push('/signin');
     });
-    /*
-		const name  = event.target.name.value;
-		const email = event.target.email.value;
-		const password = event.target.password.value;
-		const options = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				name,
-				email,
-				password
-      })
-		}
-    console.log(options)
-    
-		const request = new Request('/auth/register', options);
-
-		fetch(request)
-		.then(res => res.json())
-		.then(res => console.log(res))
-			*/
   }
   
  
-
-
-  
-
   render() {
     const { isAuthenticating } = this.props;
     return (
