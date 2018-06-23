@@ -23,10 +23,10 @@ const Header = () => (
                         <Link to="/explore">Explore</Link>
                     </li>
                     <li className="Header__nav-link">
-                        <Link to="/signin">SignIn</Link>
+                        <Link to="/signin">Log In</Link>
                     </li>
                     <li className="Header__nav-link">
-                        <Link to="/signup">SignUp</Link>
+                        <Link to="/signup">Sign Up</Link>
                     </li>
                 </ul>
             </nav>
