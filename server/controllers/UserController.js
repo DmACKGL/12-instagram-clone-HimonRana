@@ -7,6 +7,9 @@ router.use(bodyParser.json());
 
 var User = require('../models/User');
 
+// @Route   GET /users/
+// @Desc    Home route
+// @Access  Public
 router.get('/', function(req, res) {
     User.find({}, function(error, users) {
         if (error) {

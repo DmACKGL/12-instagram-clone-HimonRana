@@ -11,6 +11,7 @@ var AuthController = require('./controllers/AuthController');
 //     next();
 //   }); 
 
+// Use Routes
 app.use('/users', UserController);
 app.use('/auth', AuthController);
 

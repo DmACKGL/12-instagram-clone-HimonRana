@@ -11,6 +11,9 @@ router.use(bodyParser.json());
 var User = require('../models/User');
 var TokenVerify = require('../middleware/TokenVerify')
 
+// @Route   POST auth/login
+// @Desc    Login route
+// @Access  Public
 router.post('/login', function(req, res) {
     User.findOne( {email: req.body.email }, function(error, user) {
         if (error) return res.status(500).send('An error occured while trying to login with the user.');

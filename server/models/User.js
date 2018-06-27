@@ -16,6 +16,10 @@ var UserSchema = new mongoose.Schema({
         type: String, 
         minlength: [4, 'Password must be longer then 2 characters'],
         required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 });
 
