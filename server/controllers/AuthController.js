@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken')
 var config = require('../config');
 
-router.use(bodyParser.urlencoded( {extended: true} ));
+router.use(bodyParser.urlencoded( {extended: false} ));
 router.use(bodyParser.json());
 
 var User = require('../models/User');
@@ -45,20 +45,25 @@ router.post('/login', function(req, res) {
 
 // Auth_Create register
 router.post('/register', function(req, res) {
-    User.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-    }, function(error, user) {
-        // This is a callback
-        if (error) {
-            return res.status(500).send("An error occurred while trying to add information to the database " + error);
+    User.findOne({ email: req.body.email }).then(user => {
+        if (user) {
+            return res.status(400).json({ Email: 'Email already exist'})
         } else {
-            // Create a JWT token
-            return res.status(200).send({ user: user });
-            
+            User.create({
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password
+            }, function(error, user) {
+                // This is a callback
+                if (error) {
+                    return res.status(500).send('An error occurred while trying to add information to the database ' + error);
+                } else {
+                    // Create a JWT token
+                    return res.status(200).send({ user: user });                    
+                }
+            });
         }
-    });
+    })
 });
 
 router.get('/me', TokenVerify, function(req, res) {
