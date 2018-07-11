@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-var keys = require('../keys');
+var keys = require('../config/keys');
 
 function tokenVerify(req, res, next) {
     var token = req.headers['x-access-token'];

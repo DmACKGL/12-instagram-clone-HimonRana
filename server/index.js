@@ -1,15 +1,17 @@
-var express = require('express');
-var app = express();
-var db = require('./db');
+const express = require('express');
+const app = express();
+const db = require('./db');
+const passport = require('passport');
 
-var UserController = require('./controllers/UserController');
-var AuthController = require('./controllers/AuthController');
 
-//app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-//   }); 
+const UserController = require('./controllers/UserController');
+const AuthController = require('./controllers/AuthController');
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport Config
+require('./config/passport')(passport);
 
 // Use Routes
 app.use('/users', UserController);

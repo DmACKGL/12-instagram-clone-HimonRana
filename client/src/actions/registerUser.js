@@ -10,7 +10,7 @@ export const registerUser = (data) => dispatch => {
     .then(res => res.json())
     .then((res) => {
         localStorage.setItem('User', res.token);
-        console.log(res, 'Registered now');
+        // console.log(res, 'Registered now');
     })
     .catch(err => console.log(err, 'Can not find the res.json()'))
 }
