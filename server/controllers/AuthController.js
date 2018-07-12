@@ -4,7 +4,11 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
-const passport = require('passport');
+const passport = require("passport");
+
+// Load Input Validation
+const validateRegisterInput = require("../validation/register");
+const validateLoginInput = require("../validation/login");
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -16,10 +20,18 @@ const TokenVerify = require("../middleware/TokenVerify");
 // @Desc    Login user / Returning JWT Token
 // @Access  Public
 router.post("/login", function(req, res) {
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  // To check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }, function(error, user) {
     // Check for user
     if (!user) {
-      return res.status(404).json({ email: "User not found" });
+      errors.email = "User not found";
+      return res.status(404).json(errors);
     }
 
     if (error) {
@@ -36,11 +48,8 @@ router.post("/login", function(req, res) {
     });
 
     if (!isValidPassword) {
-      return res.status(401).json({
-        authenticated: false,
-        token: null,
-        password: "Password incorrect"
-      });
+      errors.password = "Password incorrect";
+      return res.status(401).json(errors);
     }
 
     // Remove the password before returning
@@ -50,8 +59,8 @@ router.post("/login", function(req, res) {
     return res.status(200).json({
       authenticated: true,
       user: user,
-      token: 'Bearer ' + token,
-      msg: 'success'
+      token: "Bearer " + token,
+      msg: "success"
     });
   });
 });
@@ -60,9 +69,17 @@ router.post("/login", function(req, res) {
 // @desc    Register user
 // @access  Public
 router.post("/register", function(req, res) {
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  // To check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ Email: "Email already exist" });
+      errors.email = "Email already exist";
+      return res.status(400).json(errors);
     } else {
       User.create(
         {
@@ -113,12 +130,16 @@ router.get("/me", TokenVerify, function(req, res) {
 // @Route   POST auth/current
 // @Desc    Return current user
 // @Access  Private
-router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email
-  });  
-});
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
+);
 
 module.exports = router;
