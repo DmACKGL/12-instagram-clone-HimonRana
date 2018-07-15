@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // Beskriv hur en use ska se ut
-var UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     name: {
         type: String, 
         maxlength: [20, 'You can not have more than 20 characters in name'],
@@ -24,8 +24,8 @@ var UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('save', function(next) {
-    var user = this;
-    var saltRounds = 5;
+    const user = this;
+    const saltRounds = 5;
 
     // TODO: fail-safe here if password is not changed
     if (!user.isModified('password')) next();
