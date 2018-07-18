@@ -17,7 +17,7 @@ const App = (children) => (
     <React.Fragment>
       <Header />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={SignIn} />
         <Route path="/profile" component={Profile} />
         <Route path="/explore" component={Explore} />
         <Route path="/signup" component={SignUp} />

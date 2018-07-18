@@ -17,17 +17,17 @@ const Header = () => (
             <nav className="frow centered">
                 <ul className="Header__nav-group">
                     <li className="Header__nav-link">
-                        <Link to="/profile">Profile</Link>
+                        <Link to="/profile">Users</Link>
                     </li>
-                    <li className="Header__nav-link">
+                    {/* <li className="Header__nav-link">
                         <Link to="/explore">Explore</Link>
-                    </li>
-                    <li className="Header__nav-link">
+                    </li> */}
+                    {/* <li className="Header__nav-link">
                         <Link to="/signin">Log In</Link>
-                    </li>
-                    <li className="Header__nav-link">
-                        <Link to="/signup">Sign Up</Link>
-                    </li>
+                    </li> */}
+                    {/* <li className="Header__nav-link">
+                        <Link to="/signup">Register</Link>
+                    </li> */}
                 </ul>
             </nav>
         </div>

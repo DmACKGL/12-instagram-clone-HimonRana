@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { loginUser } from "../actions/loginUser";
 import "./SignInForm.css";
 
 export class SignInForm extends Component {
-  
   constructor() {
     super();
 
     this.state = {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: ""
+    };
   }
 
   handleChange(event) {
@@ -23,11 +23,10 @@ export class SignInForm extends Component {
     });
   }
 
-  
   handleSubmit(event) {
     event.preventDefault();
     this.props.dispatch(loginUser(this.state)).then(() => {
-      this.props.history.push('/');
+      this.props.history.push("/");
     });
   }
   // handleSubmit(event) {
@@ -41,11 +40,18 @@ export class SignInForm extends Component {
     return (
       <div className="signInDiv">
         <div className="signInBox">
-          <img src="https://api.adorable.io/avatars/100/bulle@adorable.png" className="userAvatar" />
-          <form className="SignInForm__root" onSubmit={this.handleSubmit.bind(this)}>
+          <img
+            src="https://api.adorable.io/avatars/100/bulle@adorable.png"
+            className="userAvatar"
+          />
+          <form
+            className="SignInForm__root"
+            onSubmit={this.handleSubmit.bind(this)}
+          >
             <fieldset>
               <h2>Log in here</h2>
-              <input onChange={this.handleChange.bind(this)}
+              <input
+                onChange={this.handleChange.bind(this)}
                 type="text"
                 name="email"
                 placeholder="Email"
@@ -54,7 +60,8 @@ export class SignInForm extends Component {
               />
             </fieldset>
             <fieldset>
-              <input onChange={this.handleChange.bind(this)}
+              <input
+                onChange={this.handleChange.bind(this)}
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -73,9 +80,9 @@ export class SignInForm extends Component {
                 "Log In"
               )}
             </button>
-            <a href="#">Forget Password</a>
+            <Link to="/SignUp">Don't have an account? Sign up!</Link>
           </form>
-        </div> 
+        </div>
       </div>
     );
   }
