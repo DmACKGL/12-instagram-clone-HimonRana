@@ -45,6 +45,7 @@ export class SignInForm extends Component {
             className="userAvatar"
           />
           <form
+            noValidate
             className="SignInForm__root"
             onSubmit={this.handleSubmit.bind(this)}
           >
@@ -56,7 +57,6 @@ export class SignInForm extends Component {
                 name="email"
                 placeholder="Email"
                 className="email"
-                required
               />
             </fieldset>
             <fieldset>
@@ -66,7 +66,6 @@ export class SignInForm extends Component {
                 name="password"
                 placeholder="Password"
                 className="password"
-                required
               />
             </fieldset>
             <button
