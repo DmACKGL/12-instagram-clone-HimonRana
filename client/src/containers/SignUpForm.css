@@ -1,4 +1,5 @@
 .signUpDiv {
+    position: relative;
     margin: 0;
     padding: 0;
     background: url('https://picsum.photos/1920/840/?random');
@@ -13,18 +14,20 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
-    height: 420px;
+    height: auto;
     padding: 80px 40px;
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.8);
   }
   
   .signUpBox a {
+    position: relative;
     color: #fff;
     font-size: 14px;
     font-weight: bold;
     text-decoration: none;
   }
+
   
   .signUpBox a:hover {
     text-decoration: underline;
@@ -85,6 +88,14 @@
   .SignUpForm__error-text {
     color: #ed4956;
     font-size: 14px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .SignUpForm__error-line {
+    margin: 0;
+    border-bottom: 1px solid red;
+    color: #fff;
   }
   
   .SignUpForm__spinner {
