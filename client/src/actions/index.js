@@ -27,8 +27,8 @@ export const fetchPhotos = () => dispatch => {
       console.log("successfully fetched photos", data);
       return dispatch(receivePhotos(data));
     })
-    .catch(response => {
-      console.error("fetch photos failed");
+    .catch(err => {
+      console.error("fetch photos failed", err);
       return dispatch({
         type: FETCH_PHOTOS_FAILURE
       });

@@ -1,7 +1,7 @@
-import React from 'react';
-import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Header, Footer } from '../';
+import { Header, Footer } from "../";
 import {
   Home,
   Profile,
@@ -11,21 +11,21 @@ import {
   NotFoundPage
 } from "../../views";
 
-import './App.css';
+import "./App.css";
 
-const App = (children) => (
-    <React.Fragment>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={SignIn} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/explore" component={Explore} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/signin" component={SignIn} />
-        <Route component={NotFoundPage} />
-      </Switch>
-      <Footer />
-    </React.Fragment>
-)
+const App = children => (
+  <React.Fragment>
+    <Header />
+    <Switch>
+      <Route exact path="/" component={SignIn} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/explore" component={Explore} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/home" component={Home} />
+      <Route component={NotFoundPage} />
+    </Switch>
+    <Footer />
+  </React.Fragment>
+);
 
 export default App;

@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import './Photo.css';
+import "./Photo.css";
 
 export class Photo extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      response: ''
-    }
+      response: ""
+    };
   }
 
   componentDidMount() {
@@ -19,16 +19,13 @@ export class Photo extends Component {
   }
 
   apiCall() {
-    fetch('/users')
+    fetch("/users")
       .then(res => res.json())
       .then(res => {
-        this.setState({response: res})
+        this.setState({ response: res });
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
-
-
-
 
   render() {
     const { photo } = this.props;
@@ -40,24 +37,23 @@ export class Photo extends Component {
             <img
               src={photo.imageUrl}
               className="Photo-header__avatar-img"
-              alt={`${'username'} profile`}
+              alt={`${"username"} profile`}
             />
           </div>
           <div className="Photo-header__metadata-container">
             <div className="Photo-header__username">
-              <Link to={`/${'johnny'}`}>{'John Appleseed'}</Link>
+              <Link to={`/${"johnny"}`}>{"John Appleseed"}</Link>
             </div>
             <div className="Photo-header__address">
-              <Link to={`/explore/locations/${0}`}>{'New York City'}</Link>
+              <Link to={`/explore/locations/${0}`}>{"New York City"}</Link>
             </div>
           </div>
           <div className="Photo-header__timestamp">
             <small>10 hours ago</small>
           </div>
         </div>
-        <div
-          className={`Photo__body`}>
-          <img src={photo.imageUrl} />
+        <div className={`Photo__body`}>
+          <img src={photo.imageUrl} alt={`${"username"} profile`} />
         </div>
         <div className="Photo__footer">
           <div className="Photo__action-box">
@@ -70,16 +66,15 @@ export class Photo extends Component {
           </div>
         </div>
       </article>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({});
 
-})
+const mapDispatchToProps = {};
 
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Photo)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Photo);

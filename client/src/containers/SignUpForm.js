@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import classnames from "classnames";
 
-import { registerUser } from "../actions/registerUser";
+import { registerUser } from "../actions/authActions";
 import "./SignUpForm.css";
 
 export class SignUpForm extends Component {
@@ -19,6 +19,9 @@ export class SignUpForm extends Component {
       password2: "",
       errors: {}
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -37,10 +40,12 @@ export class SignUpForm extends Component {
       password2: this.state.password2
     };
 
-    axios
-      .post("/auth/register", newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    this.props.registerUser(newUser);
+
+    // axios
+    //   .post("/auth/register", newUser)
+    //   .then(res => console.log(res.data))
+    //   .catch(err => this.setState({ errors: err.response.data }));
 
     // this.props.dispatch(registerUser(this.state))
     // .then(() => {
@@ -50,6 +55,8 @@ export class SignUpForm extends Component {
 
   render() {
     const { errors } = this.state;
+
+    const { user } = this.props.auth
 
     const { isAuthenticating } = this.props;
     return (
@@ -62,42 +69,58 @@ export class SignUpForm extends Component {
           <form
             noValidate
             className="SignUpForm__root"
-            onSubmit={this.handleSubmit.bind(this)}
-          >
+            onSubmit={this.handleSubmit}
+          > {user ? user.name : null}
             <h2>Register here</h2>
-            {errors.name && (<div className="SignUpForm__error-text">{errors.name}</div>)}
+            {errors.name && (
+              <div className="SignUpForm__error-text">{errors.name}</div>
+            )}
             <input
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               type="text"
               placeholder="Name"
-              className={classnames('name', {'SignUpForm__error-line': errors.name})}
+              className={classnames("name", {
+                "SignUpForm__error-line": errors.name
+              })}
               name="name"
               value={this.state.name}
             />
-            {errors.email && (<div className="SignUpForm__error-text">{errors.email}</div>)}
+            {errors.email && (
+              <div className="SignUpForm__error-text">{errors.email}</div>
+            )}
             <input
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               type="email"
               placeholder="Email"
-              className={classnames('email', {'SignUpForm__error-line': errors.email})}
+              className={classnames("email", {
+                "SignUpForm__error-line": errors.email
+              })}
               name="email"
               value={this.state.email}
             />
-            {errors.password && (<div className="SignUpForm__error-text">{errors.password}</div>)}
+            {errors.password && (
+              <div className="SignUpForm__error-text">{errors.password}</div>
+            )}
             <input
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               type="password"
               placeholder="Password"
-              className={classnames('password', {'SignUpForm__error-line': errors.password})}
+              className={classnames("password", {
+                "SignUpForm__error-line": errors.password
+              })}
               name="password"
               value={this.state.password}
             />
-            {errors.password2 && (<div className="SignUpForm__error-text">{errors.password2}</div>)}
+            {errors.password2 && (
+              <div className="SignUpForm__error-text">{errors.password2}</div>
+            )}
             <input
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleChange}
               type="password"
               placeholder="Confirm Password"
-              className={classnames('password2', {'SignUpForm__error-line': errors.password2})}
+              className={classnames("password2", {
+                "SignUpForm__error-line": errors.password2
+              })}
               name="password2"
               value={this.state.password2}
             />
@@ -119,12 +142,21 @@ export class SignUpForm extends Component {
   }
 }
 
-/*const mapStateToProps = state => ({
-  isAuthenticating: state.isAuthenticating
+SignUpForm.PropTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.Isrequired
+};
+
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
 });
 
-const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
-*/
-export default withRouter(connect(null)(SignUpForm));
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { registerUser }
+  )(SignUpForm)
+);

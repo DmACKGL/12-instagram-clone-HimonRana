@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ export class SignInForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(loginUser(this.state))
+    this.props.dispatch(loginUser(this.state));
     // .then(() => {
     //   this.props.history.push("/");
     // });
@@ -45,6 +45,7 @@ export class SignInForm extends Component {
           <img
             src="https://api.adorable.io/avatars/100/bulle@adorable.png"
             className="userAvatar"
+            alt="Avatar"
           />
           <form
             noValidate
