@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
 import classnames from "classnames";
 
 import { registerUser } from "../actions/authActions";
@@ -24,6 +23,12 @@ export class SignUpForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -40,12 +45,7 @@ export class SignUpForm extends Component {
       password2: this.state.password2
     };
 
-    this.props.registerUser(newUser);
-
-    // axios
-    //   .post("/auth/register", newUser)
-    //   .then(res => console.log(res.data))
-    //   .catch(err => this.setState({ errors: err.response.data }));
+    this.props.registerUser(newUser, this.props.history);
 
     // this.props.dispatch(registerUser(this.state))
     // .then(() => {
@@ -55,8 +55,6 @@ export class SignUpForm extends Component {
 
   render() {
     const { errors } = this.state;
-
-    const { user } = this.props.auth
 
     const { isAuthenticating } = this.props;
     return (
@@ -70,7 +68,7 @@ export class SignUpForm extends Component {
             noValidate
             className="SignUpForm__root"
             onSubmit={this.handleSubmit}
-          > {user ? user.name : null}
+          >
             <h2>Register here</h2>
             {errors.name && (
               <div className="SignUpForm__error-text">{errors.name}</div>
@@ -144,19 +142,16 @@ export class SignUpForm extends Component {
 
 SignUpForm.PropTypes = {
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.Isrequired
+  auth: PropTypes.object.IsRequired,
+  errors: PropTypes.object.isRequired
 };
 
-
-const mapStateToProps = (state) => ({
-  auth: state.auth
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
 });
 
-
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { registerUser }
-  )(SignUpForm)
-);
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(SignUpForm));
