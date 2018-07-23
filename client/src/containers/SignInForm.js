@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { loginUser } from "../actions/loginUser";
+import classnames from "classnames";
+import { loginUser } from "../actions/authActions";
 import "./SignInForm.css";
 
 export class SignInForm extends Component {
@@ -16,6 +17,19 @@ export class SignInForm extends Component {
       password: "",
       errors: {}
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticating) {
+      this.props.history.push("/dashboard");
+    }
+    
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   handleChange(event) {
@@ -26,7 +40,13 @@ export class SignInForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(loginUser(this.state));
+
+    const userData = {
+      name: this.state.name,
+      password: this.state.password
+    };
+
+    this.props.loginUser(userData);
     // .then(() => {
     //   this.props.history.push("/");
     // });
@@ -38,6 +58,8 @@ export class SignInForm extends Component {
   //   });
 
   render() {
+    const { errors } = this.state;
+
     const { isAuthenticating } = this.props;
     return (
       <div className="signInDiv">
@@ -50,29 +72,39 @@ export class SignInForm extends Component {
           <form
             noValidate
             className="SignInForm__root"
-            onSubmit={this.handleSubmit.bind(this)}
+            onSubmit={this.handleSubmit}
           >
             <h2>Log in here</h2>
-            <p className="SignUpForm__error-text">Email is invalid</p>
+            {errors.email && (
+              <div className="SignInForm__error-text">{errors.email}</div>
+            )}
             <input
-              onChange={this.handleChange.bind(this)}
-              type="text"
+              type="email"
+              className={classnames("email", {
+                "SignInForm__error-line": errors.email
+              })}
               name="email"
               placeholder="Email"
-              className="email"
+              value={this.state.email}
+              onChange={this.handleChange}
             />
-            <p className="SignUpForm__error-text">Wrong password</p>
+            {errors.password && (
+              <div className="SignInForm__error-text">{errors.password}</div>
+            )}
             <input
-              onChange={this.handleChange.bind(this)}
               type="password"
+              className={classnames("password", {
+                "SignInForm__error-line": errors.password
+              })}
               name="password"
               placeholder="Password"
-              className="password"
+              value={this.state.password}
+              onChange={this.handleChange}
             />
             <button
+              type="submit"
               className="btn btn-button"
               disabled={isAuthenticating}
-              type="submit"
             >
               {isAuthenticating ? (
                 <i className="fa fa-spinner fa-pulse fa-3x fa-fw SignInForm__spinner" />
@@ -88,10 +120,20 @@ export class SignInForm extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   isAuthenticating: state.isAuthenticating
-// });
+SignInForm.PropTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isAuthenticating
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
 
 // const mapDispatchToProps = {};
 
-export default withRouter(connect(null)(SignInForm));
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(withRouter(SignInForm));
