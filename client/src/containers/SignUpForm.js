@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import classnames from "classnames";
 
 import { registerUser } from "../actions/authActions";
@@ -133,6 +134,7 @@ export class SignUpForm extends Component {
                 "Register"
               )}
             </button>
+            <Link to="/">Have an account? Log in!</Link>
           </form>
         </div>
       </div>
