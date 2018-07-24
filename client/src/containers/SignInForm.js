@@ -22,11 +22,17 @@ export class SignInForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticating) {
-      this.props.history.push("/dashboard");
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/explore');
     }
-    
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/profile");
+    }
+
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -42,7 +48,7 @@ export class SignInForm extends Component {
     event.preventDefault();
 
     const userData = {
-      name: this.state.name,
+      email: this.state.email,
       password: this.state.password
     };
 
@@ -61,11 +67,14 @@ export class SignInForm extends Component {
     const { errors } = this.state;
 
     const { isAuthenticating } = this.props;
+
+    const avatar = `https://api.adorable.io/avatars/100/${Math.random()}@adorable.png`;
+
     return (
       <div className="signInDiv">
         <div className="signInBox">
           <img
-            src="https://api.adorable.io/avatars/100/bulle@adorable.png"
+            src={avatar}
             className="userAvatar"
             alt="Avatar"
           />
@@ -123,15 +132,13 @@ export class SignInForm extends Component {
 SignInForm.PropTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isAuthenticating
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
-
-// const mapDispatchToProps = {};
 
 export default connect(
   mapStateToProps,

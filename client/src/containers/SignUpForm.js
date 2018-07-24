@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import classnames from "classnames";
 
 import { registerUser } from "../actions/authActions";
@@ -22,6 +22,12 @@ export class SignUpForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/explore");
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,13 +64,12 @@ export class SignUpForm extends Component {
     const { errors } = this.state;
 
     const { isAuthenticating } = this.props;
+
+    const avatar = `https://api.adorable.io/avatars/100/${Math.random()}@adorable.png`;
     return (
       <div className="signUpDiv">
         <div className="signUpBox">
-          <img
-            src="https://api.adorable.io/avatars/100/bulle@adorable.png"
-            className="userAvatar"
-          />
+          <img src={avatar} className="userAvatar" />
           <form
             noValidate
             className="SignUpForm__root"

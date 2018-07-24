@@ -57,3 +57,8 @@
 .Header__nav-link .NavLink--active {
   color: #262626;
 }
+
+.avatar {
+  width: 33px;
+  border-radius: 15px;
+}

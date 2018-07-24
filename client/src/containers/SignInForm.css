@@ -2,7 +2,7 @@
   position: relative;
   margin: 0;
   padding: 0;
-  background: url('https://picsum.photos/1920/840/?random');
+  background: url("https://picsum.photos/1920/840/?random");
   background-position: center;
   background-size: cover;
   max-width: 100%;
@@ -38,8 +38,8 @@
   border-radius: 50%;
   overflow: hidden;
   position: absolute;
-  top: calc(-100px/2);
-  left: calc(50% - 50px)
+  top: calc(-100px / 2);
+  left: calc(50% - 50px);
 }
 
 .SignInForm__root h2 {
@@ -61,7 +61,6 @@
   border-bottom: 1px solid #fff;
   color: #fff;
 }
-
 
 .btn,
 .btn:hover {
