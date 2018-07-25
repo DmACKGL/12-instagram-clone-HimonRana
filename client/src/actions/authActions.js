@@ -25,6 +25,8 @@ export const loginUser = userData => dispatch => {
   axios
     .post("/auth/login", userData)
     .then(res => {
+      console.log("You are Logged in now!");
+      
       // Save token to locaStorage
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
@@ -58,7 +60,7 @@ export const setCurrentUser = decoded => {
 
 export const logoutUser = () => dispatch => {
   // Remove token from localStorage
-  localStorage.removeItem('jwtToken');
+  localStorage.removeItem("jwtToken");
   // Remove auth header for future requests
   setAuthToken(false);
   // Set thhe current use to {} which will set IsAuthenticated to false

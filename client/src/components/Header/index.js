@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { clearCurrentProfile } from "../../actions/profileActions";
 
 import "./style.css";
 
 class Header extends Component {
   onLogoutClick(e) {
     e.preventDefault();
-    this.props.logoutUser()
-    this.props.history.push('/');
+    this.props.clearCurrentProfile();
+    this.props.logoutUser();
   }
 
   render() {
@@ -21,8 +22,8 @@ class Header extends Component {
     }@adorable.png`;
 
     const authLinks = (
-      <div className="Header__container frow justify-between">
-        <div className="frow row-start">
+      <div className="Header__container">
+        <div className="">
           <h1 className="Header__logo">
             <Link to="/" className="Header__logo-link">
               <i
@@ -33,10 +34,13 @@ class Header extends Component {
             </Link>
           </h1>
         </div>
-        <nav className="frow justify-end">
-          <ul className="Header__nav-group">
+        <nav className="frow">
+          <ul className="Header__nav-group frow">
             <li className="Header__nav-link">
-              <Link to="/profile">Users</Link>
+              <Link title="Profile" to="/profile"><i className="fas fa-user"></i></Link>
+            </li>
+            <li className="Header__nav-link">
+              <Link title="Dashboard" to="/dashboard"><i className="fas fa-cog"></i></Link>
             </li>
             <li className="Header__nav-link">
               <a
@@ -53,7 +57,7 @@ class Header extends Component {
     );
 
     const guestLinks = (
-      <div className="Header__container frow justify-between">
+      <div className="Header__container">
         <div className="frow row-start">
           <h1 className="Header__logo">
             <Link to="/" className="Header__logo-link">
@@ -70,6 +74,7 @@ class Header extends Component {
 
     return (
       <header className="Header__root">
+        <div className="gradient" />
         {isAuthenticated ? authLinks : guestLinks}
       </header>
     );
@@ -87,5 +92,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, clearCurrentProfile }
 )(Header);

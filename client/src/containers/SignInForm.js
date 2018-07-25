@@ -24,13 +24,13 @@ export class SignInForm extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/explore');
+      this.props.history.push("/explore");
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/profile");
+      this.props.history.push("/dashboard");
     }
 
     if (nextProps.errors) {
@@ -73,11 +73,7 @@ export class SignInForm extends Component {
     return (
       <div className="signInDiv">
         <div className="signInBox">
-          <img
-            src={avatar}
-            className="userAvatar"
-            alt="Avatar"
-          />
+          <img src={avatar} className="userAvatar" alt="Avatar" />
           <form
             noValidate
             className="SignInForm__root"

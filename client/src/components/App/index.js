@@ -1,19 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Header, Footer } from "../";
+import PrivateRoute from "../common/PrivateRoute";
+
+import { Header, Footer} from "../";
 import {
   Home,
   Profile,
   Explore,
   SignUp,
   SignIn,
+  ProfileEdit,
   NotFoundPage
 } from "../../views";
 
 import "./App.css";
-
-
 
 const App = children => (
   <React.Fragment>
@@ -21,6 +22,7 @@ const App = children => (
     <Switch>
       <Route exact path="/" component={SignIn} />
       <Route path="/profile" component={Profile} />
+      <PrivateRoute exact path="/dashboard" component={ProfileEdit} />
       <Route path="/explore" component={Explore} />
       <Route path="/signup" component={SignUp} />
       <Route path="/home" component={Home} />

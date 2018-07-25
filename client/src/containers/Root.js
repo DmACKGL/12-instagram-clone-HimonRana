@@ -10,6 +10,7 @@ import setAuthToken from "../utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "../actions/authActions";
 
 import { App } from "components";
+import { clearCurrentProfile } from "../actions/profileActions";
 
 const initialState = {};
 
@@ -38,8 +39,8 @@ if (localStorage.jwtToken) {
   if(decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logoutUser());
-    // TODO: Clear current Profile
-
+    // Clear current Profile
+    store.dispatch(clearCurrentProfile());
     // Redirect to login
     Window.location.href= '/';
   }
