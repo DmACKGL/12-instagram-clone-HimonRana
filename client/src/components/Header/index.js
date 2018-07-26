@@ -25,7 +25,7 @@ class Header extends Component {
       <div className="Header__container">
         <div className="">
           <h1 className="Header__logo">
-            <Link to="/" className="Header__logo-link">
+            <Link to="/home" className="Header__logo-link">
               <i
                 className="fab fa-instagram Header__instagram-icon mr-2"
                 aria-hidden="true"
@@ -37,10 +37,13 @@ class Header extends Component {
         <nav className="frow">
           <ul className="Header__nav-group frow">
             <li className="Header__nav-link">
-              <Link title="Profile" to="/profile"><i className="fas fa-user"></i></Link>
+              <Link title="Dashboard" to="/explore"><i class="far fa-compass"></i></Link>
             </li>
             <li className="Header__nav-link">
               <Link title="Dashboard" to="/dashboard"><i className="fas fa-cog"></i></Link>
+            </li>
+            <li className="Header__nav-link">
+              <Link title="Profile" to="/profile"><i className="fas fa-user"></i></Link>
             </li>
             <li className="Header__nav-link">
               <a

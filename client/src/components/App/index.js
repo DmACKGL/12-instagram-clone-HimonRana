@@ -22,7 +22,7 @@ const App = children => (
     <Switch>
       <Route exact path="/" component={SignIn} />
       <Route path="/profile" component={Profile} />
-      <PrivateRoute exact path="/dashboard" component={ProfileEdit} />
+      <PrivateRoute path="/dashboard" component={ProfileEdit} />
       <Route path="/explore" component={Explore} />
       <Route path="/signup" component={SignUp} />
       <Route path="/home" component={Home} />

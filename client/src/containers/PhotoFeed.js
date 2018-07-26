@@ -22,12 +22,13 @@ class PhotoFeed extends Component {
 
     return (
       <ul className="frow column-center">
+      list of photos here, Don't worry about it!
         { 
-          photos.map((photo) => (
-            <li key={photo.id}>
-              <Photo photo={photo} />
-            </li>
-          ))
+          // photos.map((photo) => (
+          //   <li key={photo.id}>
+          //     <Photo photo={photo} />
+          //   </li>
+          // ))
         }
       </ul>
     );

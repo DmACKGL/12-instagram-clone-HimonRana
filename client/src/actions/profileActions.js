@@ -1,6 +1,13 @@
 import axios from "axios";
 
-import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from "./types";
+import {
+  GET_PROFILE,
+  PROFILE_LOADING,
+  CLEAR_CURRENT_PROFILE,
+  SET_CURRENT_USER,
+  GET_ERRORS
+} from "./types";
+import { logoutUser } from "./authActions";
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
@@ -17,8 +24,25 @@ export const getCurrentProfile = () => dispatch => {
       dispatch({
         type: GET_PROFILE,
         payload: {}
-      })
+      });
     });
+};
+
+// Delete Account
+export const deleteAccount = () => dispatch => {
+  if (window.confirm("Are you sure, you want to delete this Account?")) {
+    axios
+      .delete("/profile")
+      .then(res => 
+        dispatch(logoutUser())
+      )
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.respones.data
+        })
+      );
+  }
 };
 
 // Profile loading
@@ -33,6 +57,9 @@ export const setProfileLoading = () => {
 
 export const clearCurrentProfile = () => {
   return {
-    type: CLEAR_CURRENT_PROFILE
+    type: CLEAR_CURRENT_PROFILE,
+    payload: {}
   };
 };
+
+
