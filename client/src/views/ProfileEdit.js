@@ -3,7 +3,7 @@ import { Dashboard } from "containers";
 
 const ProfileEdit = () => {
   return (
-    <div className="ProfileEdit">
+    <div className="ProfileEdit container">
       <Dashboard />
     </div>
   );

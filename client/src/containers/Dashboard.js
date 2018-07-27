@@ -7,12 +7,18 @@ import { getCurrentProfile, deleteAccount } from "../actions/profileActions";
 import Spinner from "../components/common/Spinner";
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
   componentDidMount() {
     this.props.getCurrentProfile();
   }
 
   onDeleteClick(e) {
-    this.props.deleteAccount()
+    this.props.deleteAccount();
   }
 
   render() {

@@ -1,0 +1,22 @@
+.grid-container {
+  display: grid;
+  height: 70%;
+  width: 100%;
+  grid-gap: 1em 1em;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: "" ". . ." ". . .";
+}
+
+.gridPhoto {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  height: 25em;
+  width: 100%;
+}
+
+.gridPhoto:before {
+  font-size: 4rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
