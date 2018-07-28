@@ -21,11 +21,11 @@ const App = children => (
     <Header />
     <Switch>
       <Route exact path="/" component={SignIn} />
-      <Route path="/profile" component={Profile} />
+      <PrivateRoute path="/profile" component={Profile} />
       <PrivateRoute path="/dashboard" component={ProfileEdit} />
-      <Route path="/explore" component={Explore} />
+      <PrivateRoute path="/explore" component={Explore} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/home" component={Home} />
+      <PrivateRoute path="/home" component={Home} />
       <Route component={NotFoundPage} />
     </Switch>
     <Footer />
