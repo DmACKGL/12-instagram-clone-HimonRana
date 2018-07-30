@@ -112,7 +112,7 @@ export class SignInForm extends Component {
               disabled={isAuthenticating}
             >
               {isAuthenticating ? (
-                <i className="fa fa-spinner fa-pulse fa-3x fa-fw SignInForm__spinner" />
+                <i className="fas fa-spinner fa-pulse fa-3x fa-fw SignInForm__spinner" />
               ) : (
                 "Log In"
               )}

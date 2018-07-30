@@ -22,8 +22,8 @@ class Header extends Component {
     }@adorable.png`;
 
     const authLinks = (
-      <div className="Header__container">
-        <div className="">
+      <div className="Header__container row d-flex justify-content-between">
+        <div className="d-flex align-items-center">
           <h1 className="Header__logo">
             <Link to="/home" className="Header__logo-link">
               <i
@@ -34,16 +34,22 @@ class Header extends Component {
             </Link>
           </h1>
         </div>
-        <nav className="frow">
-          <ul className="Header__nav-group frow">
+        <nav className="nav">
+          <ul className="Header__nav-group d-flex align-items-center">
             <li className="Header__nav-link">
-              <Link title="Dashboard" to="/explore"><i class="far fa-compass"></i></Link>
+              <Link title="Dashboard" to="/explore">
+                <i className="far fa-compass" />
+              </Link>
             </li>
             <li className="Header__nav-link">
-              <Link title="Dashboard" to="/dashboard"><i className="fas fa-cog"></i></Link>
+              <Link title="Dashboard" to="/dashboard">
+                <i className="fas fa-cog" />
+              </Link>
             </li>
             <li className="Header__nav-link">
-              <Link title="Profile" to="/profile"><i className="fas fa-user"></i></Link>
+              <Link title="Profile" to="/profile">
+                <i className="fas fa-user" />
+              </Link>
             </li>
             <li className="Header__nav-link">
               <a
@@ -84,7 +90,7 @@ class Header extends Component {
   }
 }
 
-Header.PropTypes = {
+Header.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };

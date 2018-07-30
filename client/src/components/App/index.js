@@ -7,6 +7,7 @@ import { Header, Footer} from "../";
 import {
   Home,
   Profile,
+  AllProfiles,
   Explore,
   SignUp,
   SignIn,
@@ -21,10 +22,11 @@ const App = children => (
     <Header />
     <Switch>
       <Route exact path="/" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
       <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute path="/profiles" component={AllProfiles} />
       <PrivateRoute path="/dashboard" component={ProfileEdit} />
       <PrivateRoute path="/explore" component={Explore} />
-      <Route path="/signup" component={SignUp} />
       <PrivateRoute path="/home" component={Home} />
       <Route component={NotFoundPage} />
     </Switch>
