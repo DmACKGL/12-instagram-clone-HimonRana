@@ -68,34 +68,7 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.props.auth;
-    // const { profile, loading } = this.props.profile;
     const { errors } = this.state;
-
-    // let dashboardContent;
-
-    // if (profile === null || loading) {
-    //   dashboardContent = <Spinner />;
-    // } else {
-    //   // Check if logged in user has profile data
-    //   if (Object.keys(profile).length > 0) {
-    //     dashboardContent = (
-    //       <div>
-    //         <p className="lead text-muted"> Edit Profile {user.name}</p>
-    //       </div>
-    //     );
-    //   } else {
-    //     // User is logged in but has no profile
-    //     dashboardContent = (
-    //       <div>
-    //         <p className="lead text-muted"> Welcome {user.name}</p>
-    //         <p>You have not setup a profile, please add some info</p>
-    //         <Link to="/create-profile">
-    //           <button>Create Profile</button>
-    //         </Link>
-    //       </div>
-    //     );
-    //   }
-    // }
 
     return (
       <div>

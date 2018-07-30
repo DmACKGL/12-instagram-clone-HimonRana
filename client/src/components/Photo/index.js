@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -35,8 +35,8 @@ export class Photo extends Component {
         <div className="Photo-header">
           <div className="Photo-header__avatar-container">
             <img
-              src={photo.imageUrl}
-              className="Photo-header__avatar-img"
+              src="https://picsum.photos/200/200/?random"
+              className="Photo-header__avatar-img rounded-circle"
               alt={`${"username"} profile`}
             />
           </div>
@@ -48,20 +48,23 @@ export class Photo extends Component {
               <Link to={`/explore/locations/${0}`}>{"New York City"}</Link>
             </div>
           </div>
+        </div>
+        <div className={`Photo__body`}>
+          <img
+            src="https://picsum.photos/200/200/?random"
+            alt={`${"username"} profile`}
+          />
+        </div>
+        <div className="Photo__like-button ml-4 mt-2">
+          <button className="btn-outline-danger"><i class="far fa-heart"></i></button>
+        </div>
+        <div className="Photo__footer">
           <div className="Photo-header__timestamp">
             <small>10 hours ago</small>
           </div>
-        </div>
-        <div className={`Photo__body`}>
-          <img src={photo.imageUrl} alt={`${"username"} profile`} />
-        </div>
-        <div className="Photo__footer">
           <div className="Photo__action-box">
-            <div className="Photo__like-button">
-              <button>Like</button>
-            </div>
             <div className="Photo__comment-box">
-              <input type="text" placeholder="Comments go here later" />
+              <input type="text" placeholder="Comment here" />
             </div>
           </div>
         </div>

@@ -1,8 +1,7 @@
 .Photo__root {
-  width: 100%;
-  min-width: 600px;
+  width: 60%;
   max-width: 800px;
-  margin: 40px auto;
+  margin: 3em auto;
   border: 1px solid #efefef;
   background-color: #fff;
   border-radius: 2px;
@@ -16,8 +15,8 @@
 }
 
 .Photo-header__avatar-container {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   margin-right: 10px;
   border: 1px solid #dbdbdb;
   border-radius: 50%;
@@ -26,7 +25,6 @@
 .Photo-header__avatar-img {
   display: inline-block;
   width: 100%;
-  border-radius: 50%;
 }
 
 .Photo-header__metadata-container {
@@ -126,4 +124,22 @@
   0% { font-size: 40px; opacity: 0; z-index: 0; }
   50% { font-size: 80px; opacity: 0.8; z-index: 1; }
   100% { font-size: 80px; opacity: 0.8; z-index: 1; }
+}
+
+@media screen and (max-width: 1000px) {
+  .Photo__root {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .Photo__root {
+    width: 100%;
+    margin: 0 0; 
+  }
+  
+  .Home {
+    margin: 0;
+    padding: 0;
+  }
 }

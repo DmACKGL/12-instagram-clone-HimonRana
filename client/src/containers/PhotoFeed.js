@@ -21,8 +21,7 @@ class PhotoFeed extends Component {
     const { photos } = this.props;
 
     return (
-      <ul className="frow column-center">
-      list of photos here, Don't worry about it!
+      <div>
         { 
           // photos.map((photo) => (
           //   <li key={photo.id}>
@@ -30,7 +29,9 @@ class PhotoFeed extends Component {
           //   </li>
           // ))
         }
-      </ul>
+        <Photo />
+        <Photo />
+        </div>
     );
   }
 }
