@@ -129,7 +129,7 @@ export class SignUpForm extends Component {
               value={this.state.password2}
             />
             <button
-              className="btn btn-primary"
+              className="signUpBtn"
               disabled={isAuthenticating}
               type="submit"
             >

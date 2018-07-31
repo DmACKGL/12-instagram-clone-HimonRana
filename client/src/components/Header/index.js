@@ -22,7 +22,7 @@ class Header extends Component {
     }@adorable.png`;
 
     const authLinks = (
-      <div className="Header__container row d-flex justify-content-between">
+      <div className="Header__container d-flex justify-content-between">
         <div className="d-flex align-items-center">
           <h1 className="Header__logo">
             <Link to="/home" className="Header__logo-link">
@@ -67,7 +67,7 @@ class Header extends Component {
 
     const guestLinks = (
       <div className="Header__container">
-        <div className="frow row-start">
+        <div className="d-flex align-items-center">
           <h1 className="Header__logo">
             <Link to="/" className="Header__logo-link">
               <i

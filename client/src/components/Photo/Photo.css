@@ -5,7 +5,7 @@
   border: 1px solid #efefef;
   background-color: #fff;
   border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .Photo-header {
@@ -81,7 +81,10 @@
 }
 
 .Photo__comments {
-  padding-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4em;
 }
 
 .Photo__likes {
@@ -121,9 +124,21 @@
 }
 
 @keyframes heart {
-  0% { font-size: 40px; opacity: 0; z-index: 0; }
-  50% { font-size: 80px; opacity: 0.8; z-index: 1; }
-  100% { font-size: 80px; opacity: 0.8; z-index: 1; }
+  0% {
+    font-size: 40px;
+    opacity: 0;
+    z-index: 0;
+  }
+  50% {
+    font-size: 80px;
+    opacity: 0.8;
+    z-index: 1;
+  }
+  100% {
+    font-size: 80px;
+    opacity: 0.8;
+    z-index: 1;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -135,9 +150,9 @@
 @media screen and (max-width: 640px) {
   .Photo__root {
     width: 100%;
-    margin: 0 0; 
+    margin: 0 0;
   }
-  
+
   .Home {
     margin: 0;
     padding: 0;

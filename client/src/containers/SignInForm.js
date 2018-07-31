@@ -108,7 +108,7 @@ export class SignInForm extends Component {
             />
             <button
               type="submit"
-              className="btn btn-button"
+              className="logInBtn"
               disabled={isAuthenticating}
             >
               {isAuthenticating ? (

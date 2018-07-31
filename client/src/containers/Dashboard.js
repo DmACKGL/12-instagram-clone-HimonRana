@@ -72,8 +72,7 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <h4>{user.name}</h4>
-        <p className="lead text-muted"> Edit Profile</p>
+        {/* <p className="lead text-muted"> Edit Profile</p>
         <form onSubmit={this.onSubmit}>
           <textarea
             className={classnames("form-control form-control-lg", {
@@ -87,14 +86,14 @@ class Dashboard extends Component {
           {errors.bio && (
             <div className="SignUpForm__error-text">{errors.bio}</div>
           )}
-          <button type="submit" value="Submit" className=" btn btn-link">
+          <button type="submit" value="Submit" className="btn-primary bioButton">
             {" "}
             Submit
           </button>
-        </form>
-        <p>
+        </form> */}
+        <h5 className="mt-3 mb-4">
           <strong>Remove Account permanently</strong>
-        </p>
+        </h5>
         <button onClick={this.onDeleteClick.bind(this)} className="btn-danger">
           Delete Account
         </button>

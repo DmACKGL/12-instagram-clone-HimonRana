@@ -56,7 +56,31 @@ export class Photo extends Component {
           />
         </div>
         <div className="Photo__like-button ml-4 mt-2">
-          <button className="btn-outline-danger"><i class="far fa-heart"></i></button>
+          <button className="btn-outline-danger">
+            <i class="far fa-heart" />
+          </button>
+        </div>
+        <div className="Photo__comments container ml-2 mr-2 mt-2">
+          <ul className="m-0">
+            <li className="mb-2">
+              <div className="">
+                <Link className="font-weight-bold" to={"/profile/:id/"}>
+                  {"John Applemunk: "}
+                </Link>
+                  Hello im a comment am cool cool coolc oocl lorem uipsnuf
+                  uibadfwaiub baiwudf.
+              </div>
+            </li>
+            <li className="mb-2">
+              <div className="">
+                <Link className="font-weight-bold" to={"/profile/:id/"}>
+                  {"John Applemunk: "}
+                </Link>
+                  Hello im a comment am cool cool coolc oocl lorem uipsnuf
+                  uibadfwaiub baiwudf.
+              </div>
+            </li>
+          </ul>
         </div>
         <div className="Photo__footer">
           <div className="Photo-header__timestamp">
@@ -64,7 +88,9 @@ export class Photo extends Component {
           </div>
           <div className="Photo__action-box">
             <div className="Photo__comment-box">
+            <form>
               <input type="text" placeholder="Comment here" />
+            </form>
             </div>
           </div>
         </div>

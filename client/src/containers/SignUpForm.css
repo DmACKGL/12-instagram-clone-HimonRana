@@ -65,9 +65,9 @@
   color: #fff;
 }
 
-.btn,
-.btn:hover {
-  background-color: #ff267e;
+.signUpBtn,
+.signUpBtn:hover {
+  background-color: #b30048;
   margin-top: 2em;
   height: 40px;
   border: none;
@@ -78,7 +78,7 @@
   text-transform: capitalize;
 }
 
-.btn:disabled {
+.signUpBtn:disabled {
   background-color: #d3d3d3;
   border-color: #d3d3d3;
   cursor: not-allowed;

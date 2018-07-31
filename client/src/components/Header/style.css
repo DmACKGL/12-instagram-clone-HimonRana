@@ -1,17 +1,22 @@
 .gradient {
   height: 4px;
-  background: radial-gradient(ellipse farthest-corner, rgb(207, 204, 0), rgb(255, 0, 0), rgb(248, 121, 242));
+  background: radial-gradient(
+    ellipse farthest-corner,
+    rgb(207, 204, 0),
+    rgb(255, 0, 0),
+    rgb(248, 121, 242)
+  );
 }
 
 .Header__root {
   background-color: #fff;
-  border-bottom: 1px solid rgba(0,0,0,.0975);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
 }
-
 
 .Header__container {
   padding: 0.8rem 0;
   margin: 0;
+  text-align: left;
 }
 
 .Header__logo {
@@ -67,4 +72,16 @@
   padding: 0;
   width: 33px;
   border-radius: 15px;
+}
+
+@media screen and (max-width: 555px) {
+  .Header__container {
+    padding: 0.8rem 0;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .Header__logo-link {
+    padding-right: 2em;
+  }
 }

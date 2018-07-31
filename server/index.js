@@ -17,7 +17,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Use Routes
-app.use('/users', UserController);
+// app.use('/users', UserController);
 app.use('/auth', AuthController);
 app.use('/profile', ProfileController);
 app.use('/posts', PostController);
