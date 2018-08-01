@@ -20,6 +20,7 @@ class Dashboard extends Component {
     this.state = {
       user: "",
       bio: "",
+      imgURL: "",
       errors: {}
     };
 
@@ -36,10 +37,6 @@ class Dashboard extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
 
@@ -60,7 +57,8 @@ class Dashboard extends Component {
     e.preventDefault();
 
     const profileData = {
-      bio: this.state.bio
+      bio: this.state.bio,
+      imgURL: this.state.imgURL
     };
 
     this.props.createProfile(profileData, this.props.history);
@@ -72,25 +70,27 @@ class Dashboard extends Component {
 
     return (
       <div>
-        {/* <p className="lead text-muted"> Edit Profile</p>
+        <p className="lead font-weight-bold"> Edit Profile</p>
         <form onSubmit={this.onSubmit}>
           <textarea
-            className={classnames("form-control form-control-lg", {
-              "is-invalid": errors.bio
-            })}
+            className="form-control-lg"
             placeholder="Short bio"
             name="bio"
-            value={this.state.bio}
             onChange={this.onChange}
           />
-          {errors.bio && (
-            <div className="SignUpForm__error-text">{errors.bio}</div>
-          )}
-          <button type="submit" value="Submit" className="btn-primary bioButton">
+          <br/>
+          <input
+            className="form-control-lg"
+            placeholder="Profile image URL here"
+            name="imgURL"
+            value={this.state.imgURL}
+            onChange={this.onChange}
+          />
+          <button type="submit" value="Submit" className="btn-primary bioButton mt-4">
             {" "}
             Submit
           </button>
-        </form> */}
+        </form>
         <h5 className="mt-3 mb-4">
           <strong>Remove Account permanently</strong>
         </h5>

@@ -4,11 +4,15 @@ import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 
 import { getCurrentProfile } from "../actions/profileActions";
+import Spinner from "../components/common/Spinner";
 class ProfileInfo extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      bio: "",
+      imageURL: "",
+    };
   }
 
   componentDidMount() {
@@ -17,23 +21,31 @@ class ProfileInfo extends Component {
 
   render() {
     const { user } = this.props.auth;
+    const { profile, loading } = this.props.profile;
+    console.log(this.props.profile);
 
     const avatar = `https://api.adorable.io/avatars/100/${
       user.name
     }@adorable.png`;
 
-    return (
-      <div className="container mt-5">
+    let profileContent;
+
+    if (profile === null || loading) {
+      profileContent = <Spinner />
+    } else {
+      profileContent = (
+        <div>
         <div className="row">
           <div className="col-6 d-flex justify-content-center">
             <img
-              src={avatar}
+              src={profile.imgUrl}
               className="profileAvatar rounded-circle"
             />
           </div>
           <div className="col-6 d-flex align-items-center">
-            <div className="row">
-              <h5>{user.name}</h5>
+            <div className="profileContent">
+              <h4 className="userName mb-4">{user.name}</h4>
+              <h6>{profile.bio}</h6>
             </div>
           </div>
         </div>
@@ -57,6 +69,13 @@ class ProfileInfo extends Component {
             />
           </div>
         </div>
+        </div>
+      )
+    }
+
+    return (
+      <div className="container mt-5">
+        {profileContent}
       </div>
     );
   }

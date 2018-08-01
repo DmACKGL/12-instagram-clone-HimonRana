@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
+
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
 
 // Load Input Validation
 
@@ -78,17 +82,34 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // Create bio
+    // Find User and then Create bio
     Profile.findOne({ user: req.user.id })
-      .then(profile => {
-        const newProfile = new Profile({
-          bio: req.body.bio
+      .then(() => {
+        Profile.create({
+          user: req.user.id,
+          bio: req.body.bio,
+          imgUrl: req.body.imgUrl
           // TODO: Insert ImageURL here
-        });
+        },
+        function(error, profile) {
+          // This is a callback
+          if (error) {
+            return res
+              .status(500)
+              .send(
+                "An error occurred while trying to add information to the database " +
+                  error
+              );
+          } else {
+            // Create a JWT token
+            return res.status(200).send({ profile: profile });
+          }
+        }
+      );
 
-        profile.save().then(profile => res.json(profile));
+        // newProfile.save().then(Profile => res.json(Profile));
       })
-      .catch(err => res.status(404).json({ bio: "no bio here" }));
+      // .catch(err => res.status(404).json({ bio: "no bio here" }));
   }
 );
 
