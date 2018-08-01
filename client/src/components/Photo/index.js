@@ -35,7 +35,7 @@ export class Photo extends Component {
         <div className="Photo-header">
           <div className="Photo-header__avatar-container">
             <img
-              src="https://picsum.photos/200/200/?random"
+              src="https://picsum.photos/100/100/?random"
               className="Photo-header__avatar-img rounded-circle"
               alt={`${"username"} profile`}
             />

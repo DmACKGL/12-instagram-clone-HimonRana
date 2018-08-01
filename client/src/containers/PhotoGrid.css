@@ -9,10 +9,9 @@
 }
 
 .gridPhoto {
-  position: relative;
   background-size: cover;
   background-position: center center;
-  height: 25em;
+  height: 100%;
   width: 100%;
 }
 

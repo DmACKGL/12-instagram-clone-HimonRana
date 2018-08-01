@@ -10,19 +10,19 @@ export class PhotoGrid extends Component {
           <div>
             <img
               className="gridPhoto"
-              src="https://picsum.photos/1920/840/?random"
+              src="https://picsum.photos/100/100/?random"
             />
           </div>
           <div>
             <img
               className="gridPhoto"
-              src="https://picsum.photos/1920/840/?random"
+              src="https://picsum.photos/200/200/?random"
             />
           </div>
           <div>
             <img
               className="gridPhoto"
-              src="https://picsum.photos/1920/840/?random"
+              src="https://picsum.photos/300/300/?random"
             />
           </div>
         </div>

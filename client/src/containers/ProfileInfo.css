@@ -1,5 +1,59 @@
 .profileAvatar {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 150px;
+  height: 150px;
+}
+
+.profileContent {
+  padding-bottom: 4em;
+}
+
+.profileContent h6 {
+    padding-top: 2em;
+}
+
+.imgUrl {
+  padding: 5em;
+}
+
+hr {
+  margin: 0;
+}
+
+@media screen and (max-width: 1000px) {
+}
+
+@media screen and (max-width: 640px) {
+  .profileAvatar {
+    width: 80px;
+    height: 80px;
+  }
+  .imgUrl {
+    padding: 1em;
+  }
+
+  .profileContent {
+    padding-top: 1em;
+  }
+
+  .profileContent h4 {
+    padding-bottom: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .profileContent h6 {
+    padding-top: 1em;
+    font-size: 14px;
+  }
+
+  hr {
     margin: 0;
-    padding: 0;
-    display: flex;
+  }
+
+  .infoProfile {
+    padding-bottom: 4em;
+    padding-top: 1em;
+  }
 }

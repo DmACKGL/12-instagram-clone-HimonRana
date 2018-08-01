@@ -83,7 +83,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // Find User and then Create bio
-    Profile.findOne({ user: req.user.id })
+    Profile.findByIdAndUpdate({ user: req.user.id })
       .then(() => {
         Profile.create({
           user: req.user.id,

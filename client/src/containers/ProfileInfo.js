@@ -5,6 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 
 import { getCurrentProfile } from "../actions/profileActions";
 import Spinner from "../components/common/Spinner";
+import "./ProfileInfo.css"
 class ProfileInfo extends Component {
   constructor() {
     super();
@@ -35,16 +36,18 @@ class ProfileInfo extends Component {
     } else {
       profileContent = (
         <div>
-        <div className="row">
-          <div className="col-6 d-flex justify-content-center">
+        <div className="infoProfile row d-flex flex-nowrap">
+          <div className="imgUrl col-6 d-flex justify-content-center">
             <img
-              src={profile.imgUrl}
-              className="profileAvatar rounded-circle"
+              src="https://picsum.photos/200/200/?random"
+              
+              className="profileAvatar rounded-circle "
             />
           </div>
           <div className="col-6 d-flex align-items-center">
             <div className="profileContent">
-              <h4 className="userName mb-4">{user.name}</h4>
+              <h4 className="userName mb-1">{user.name}</h4>
+              <hr />
               <h6>{profile.bio}</h6>
             </div>
           </div>
@@ -53,19 +56,19 @@ class ProfileInfo extends Component {
           <div>
             <img
               className="gridPhoto"
-              src="https://picsum.photos/1920/840/?random"
+              src="https://picsum.photos/100/100/?random"
             />
           </div>
           <div>
             <img
               className="gridPhoto"
-              src="https://picsum.photos/1920/840/?random"
+              src="https://picsum.photos/300/300/?random"
             />
           </div>
           <div>
             <img
               className="gridPhoto"
-              src="https://picsum.photos/1920/840/?random"
+              src="https://picsum.photos/400/400/?random"
             />
           </div>
         </div>
