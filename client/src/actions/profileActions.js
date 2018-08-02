@@ -3,7 +3,7 @@ import { logoutUser } from "./authActions";
 
 import {
   GET_PROFILE,
-  GET_PROFILES,
+  GET_USERS,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   SET_CURRENT_USER,
@@ -30,20 +30,20 @@ export const getCurrentProfile = () => dispatch => {
     });
 };
 
-// Get all profiles
-export const getProfiles = () => dispatch => {
+// Get all users
+export const getUsers = () => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get('/profile/all')
     .then(res =>
       dispatch({
-        type: GET_PROFILES,
+        type: GET_USERS,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILES,
+        type: GET_USERS,
         payload: null
       })
     );

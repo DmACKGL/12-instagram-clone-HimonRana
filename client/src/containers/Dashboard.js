@@ -20,7 +20,7 @@ class Dashboard extends Component {
     this.state = {
       user: "",
       bio: "",
-      imgURL: "",
+      imgUrl: "",
       errors: {}
     };
 
@@ -42,9 +42,11 @@ class Dashboard extends Component {
 
       // If profile field doesnt exist, make empty string
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
-
+      profile.imgUrl = !isEmpty(profile.imgUrl) ? profile.imgUrl : "";
+      
       this.setState({
-        bio: profile.bio
+        bio: profile.bio,
+        imgUrl: profile.imgUrl
       });
     }
   }
@@ -58,7 +60,7 @@ class Dashboard extends Component {
 
     const profileData = {
       bio: this.state.bio,
-      imgURL: this.state.imgURL
+      imgUrl: this.state.imgUrl
     };
 
     this.props.createProfile(profileData, this.props.history);
@@ -76,14 +78,15 @@ class Dashboard extends Component {
             className="form-control-lg"
             placeholder="Short bio"
             name="bio"
+            value={this.state.bio}
             onChange={this.onChange}
           />
           <br/>
           <input
             className="form-control-lg"
             placeholder="Profile image URL here"
-            name="imgURL"
-            value={this.state.imgURL}
+            name="imgUrl"
+            value={this.state.imgUrl}
             onChange={this.onChange}
           />
           <button type="submit" value="Submit" className="btn-primary bioButton mt-4">

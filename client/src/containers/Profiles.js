@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+
+import Users from "./Users";
 import Spinner from "../components/common/Spinner";
-import { getProfiles } from "../actions/profileActions";
+import { getUsers } from "../actions/profileActions";
 
 export class Profiles extends Component {
   componentDidMount() {
-    this.props.getProfiles();
+    this.props.getUsers();
   }
 
   render() {
-    const { profiles, loading } = this.props.profile;
+    const { users, loading } = this.props.profile;
     let profileItems;
+    console.log(this.props.profile);
 
-    if (profiles === null || loading) {
+    if (loading) {
       profileItems = <Spinner />;
     } else {
-      if (profiles.length > 0) {
-        <h1>PROFILES HERE</h1>;
-        // profileItems = profiles.map(profile => (
-        //   <ProfileItem key={profile._id} profile={profile} />));
+      if (users.length > 0) {
+        profileItems = users.map(profile => (
+          <Users key={profile._id} profile={profile} />));
       } else {
         profileItems = <h4>No profiles found...</h4>;
       }
@@ -43,7 +45,7 @@ export class Profiles extends Component {
 }
 
 Profiles.propTypes = {
-  getProfiles: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -52,6 +54,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  null,
-  { getProfiles }
+  mapStateToProps,
+  { getUsers }
 )(Profiles);

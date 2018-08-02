@@ -1,13 +1,13 @@
 import {
   GET_PROFILE,
-  GET_PROFILES,
+  GET_USERS,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE
 } from "../actions/types";
 
 const initialState = {
   profile: {},
-  profiles: null,
+  users: {},
   loading: false
 };
 
@@ -24,10 +24,10 @@ export default function(state = initialState, action) {
         profile: action.payload,
         loading: false
       };
-    case GET_PROFILES:
+    case GET_USERS:
       return {
         ...state,
-        profiles: action.payload,
+        users: action.payload,
         loading: false
       };
     case CLEAR_CURRENT_PROFILE:

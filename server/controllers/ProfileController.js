@@ -36,23 +36,27 @@ router.get(
 );
 
 // @Route   GET profile/all
-// @Desc    Get all profiles
-// @Access  Public
-router.get("/all", (req, res) => {
-  const errors = {};
+// @Desc    Get all users
+// @Access  Private
+router.get(
+  "/all",
+  // passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
 
-  Profile.find()
-    .populate("user", ["name"])
-    .then(profiles => {
-      if (!profile) {
-        errors.noprofile = "There are no profiles";
-        return res.status(404).json(errors);
-      }
+    Profile.find()
+      .populate("user", ["name"])
+      .then(users => {
+        if (!users) {
+          errors.nouser = "There are no profiles";
+          return res.status(404).json(errors);
+        }
 
-      res.json(prfiles);
-    })
-    .catch(err => res.status(404).json({ profile: "There are no profiles" }));
-});
+        res.json(users);
+      })
+      .catch(err => res.status(404).json({ users: "There are no profiles" }));
+  }
+);
 
 // @Route   GET profile/user/:user_id
 // @Desc    Get profile by User ID
@@ -82,35 +86,40 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // Find User and then Create bio
-    Profile.findByIdAndUpdate({ user: req.user.id })
-      .then(() => {
-        Profile.create({
-          user: req.user.id,
-          bio: req.body.bio,
-          imgUrl: req.body.imgUrl
-          // TODO: Insert ImageURL here
-        },
-        function(error, profile) {
-          // This is a callback
-          if (error) {
-            return res
-              .status(500)
-              .send(
-                "An error occurred while trying to add information to the database " +
-                  error
-              );
-          } else {
-            return res.status(200).send({ profile: profile });
-          }
-        }
-      );
+    const profileFields = {};
+    profileFields.user = req.user.id;
 
-        // newProfile.save().then(Profile => res.json(Profile));
-      })
-      // .catch(err => res.status(404).json({ bio: "no bio here" }));
+    if (req.body.bio) {
+      profileFields.bio = req.body.bio;
+    } else {
+      profileFields.bio = "";
+    }
+
+    if (req.body.imgUrl) {
+      profileFields.imgUrl = req.body.imgUrl;
+    } else {
+      profileFields.imgUrl = "";
+    }
+
+    // Find User a nd then Create bio
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      if (profile) {
+        //update
+        Profile.findOneAndUpdate(
+          { user: req.user.id },
+          { $set: profileFields },
+          { new: true }
+        ).then(profile => res.json(profile));
+      } else {
+        return res.status(200).send({ profile: profile });
+      }
+    });
+    new Profile(profileFields).save().then(Profile => res.json(Profile));
   }
 );
+// .catch(err => res.status(404).json({ bio: "no bio here" }));
+//   }
+// );
 
 // @Route   DELETE profile
 // @Desc    Delete User and Profile

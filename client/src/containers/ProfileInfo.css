@@ -48,6 +48,11 @@ hr {
     font-size: 14px;
   }
 
+  .profileContent .btn {
+    padding: 2px;
+    font-size: 12px;
+  }
+
   hr {
     margin: 0;
   }
@@ -56,4 +61,6 @@ hr {
     padding-bottom: 4em;
     padding-top: 1em;
   }
+
+  
 }

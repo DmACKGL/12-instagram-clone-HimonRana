@@ -5,7 +5,6 @@ export class PhotoGrid extends Component {
   render() {
     return (
       <div>
-        <h1>Explore</h1><br />
         <div className="grid-container">
           <div>
             <img
