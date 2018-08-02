@@ -17,22 +17,23 @@ class ProfileInfo extends Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentProfile();
-  }
+    this.props.getCurrentProfile()
+  };
 
+  
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
-    console.log(this.props.profile);
 
     const avatar = `https://api.adorable.io/avatars/100/${
       user.name
     }@adorable.png`;
 
     let profileContent;
+    let spinner = <Spinner />;
 
-    if (profile === null || loading) {
-      profileContent = <Spinner />
+    if (loading) {
+        profileContent = spinner;
     } else {
       profileContent = (
         <div>
@@ -48,7 +49,7 @@ class ProfileInfo extends Component {
             <div className="profileContent">
               <h4 className="userName mb-1">{user.name}</h4>
               <hr />
-              <h6>{profile.bio}</h6>
+              <h6>{profile == null ? ("") : (profile.bio)}</h6>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import Spinner from "../common/Spinner";
 import "./Photo.css";
 
 export class Photo extends Component {
@@ -28,10 +29,15 @@ export class Photo extends Component {
   }
 
   render() {
-    const { photo } = this.props;
+    const { photo, isFetching } = this.props;
+    let photoContent;
+    let spinner = <Spinner />;
 
-    return (
-      <article className="Photo__root">
+    if (isFetching) {
+      photoContent = spinner;
+    } else {
+      photoContent = (
+        <article className="Photo__root">
         <div className="Photo-header">
           <div className="Photo-header__avatar-container">
             <img
@@ -95,6 +101,13 @@ export class Photo extends Component {
           </div>
         </div>
       </article>
+      );
+    }
+
+    return (
+      <div>
+        {photoContent}
+      </div>
     );
   }
 }
