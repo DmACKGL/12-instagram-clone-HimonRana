@@ -25,9 +25,28 @@ export const getCurrentProfile = () => dispatch => {
     .catch(err => {
       dispatch({
         type: GET_PROFILE,
-        payload: null
+        payload: {}
       });
     });
+};
+
+// Get profile by id
+export const getProfileById = (id) => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/profile/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null
+      })
+    );
 };
 
 // Get all users
@@ -52,7 +71,7 @@ export const getUsers = () => dispatch => {
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
-    .post("/profile", profileData)
+    .put("/profile", profileData)
     .then(res => history.push("/profile"))
     .catch(err =>
       dispatch({

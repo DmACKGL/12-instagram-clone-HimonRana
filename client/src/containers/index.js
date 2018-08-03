@@ -6,3 +6,4 @@ export { default as SignUpForm } from "./SignUpForm";
 export { default as Dashboard } from "./Dashboard";
 export { default as ProfileInfo } from "./ProfileInfo";
 export { default as Profiles } from "./Profiles";
+export { default as OtherUser } from "./OtherUser";

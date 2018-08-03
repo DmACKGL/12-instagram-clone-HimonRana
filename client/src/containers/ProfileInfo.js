@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 
-import { getCurrentProfile } from "../actions/profileActions";
+import { getCurrentProfile, getProfileById } from "../actions/profileActions";
 import { PhotoGrid } from "./PhotoGrid";
 import Spinner from "../components/common/Spinner";
 import "./ProfileInfo.css";
@@ -19,6 +19,11 @@ class ProfileInfo extends Component {
 
   componentDidMount() {
     this.props.getCurrentProfile();
+    console.log(this.props.match);
+
+    if (this.props.match.params._id) {
+      this.props.getProfileById(this.props.match.params._id);
+    }
   }
 
   render() {
@@ -40,7 +45,7 @@ class ProfileInfo extends Component {
           <div className="infoProfile row d-flex flex-nowrap">
             <div className="imgUrl col-6 d-flex justify-content-center">
               <img
-                src={profile == (null && "") ? avatar : profile.imgUrl}
+                src={(profile === null || profile.imgUrl == "") ? avatar : profile.imgUrl}
                 className="profileAvatar rounded-circle "
               />
             </div>
@@ -69,7 +74,8 @@ class ProfileInfo extends Component {
     return <div className="container mt-5">{profileContent}</div>;
   }
 }
-ProfileInfo.PropTypes = {
+ProfileInfo.propTypes = {
+  getProfileById: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
@@ -82,5 +88,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentProfile, getProfileById }
 )(withRouter(ProfileInfo));

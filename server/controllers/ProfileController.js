@@ -58,10 +58,10 @@ router.get(
   }
 );
 
-// @Route   GET profile/user/:user_id
+// @Route   GET profile/:user_id
 // @Desc    Get profile by User ID
 // @Access  Public
-router.get("/user/:user_id", (req, res) => {
+router.get("/:id", (req, res) => {
   const erros = {};
 
   Profile.findOne({ user: req.params.user_id })
@@ -82,7 +82,7 @@ router.get("/user/:user_id", (req, res) => {
 // @Route   POST /profile
 // @Desc    Create/Edit user profile
 // @Access  Private
-router.post(
+router.put(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -101,11 +101,11 @@ router.post(
       profileFields.imgUrl = "";
     }
 
-    // Find User a nd then Create bio
+    // Find User and then Create bio
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
         //update
-        Profile.findOneAndUpdate(
+        Profile.findByIdAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
           { new: true }

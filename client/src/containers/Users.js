@@ -15,7 +15,7 @@ class Users extends Component {
           </div>
           <div className="col-6 profileContent">
             <h4 className="mb-2">{profile.user.name}</h4>
-            <Link to="/profile" className="btn btn-info">
+            <Link to={`/profile/${profile._id}`} className="btn btn-info">
               View Profile
             </Link>
           </div>
