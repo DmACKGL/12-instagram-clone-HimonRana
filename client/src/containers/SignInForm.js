@@ -125,7 +125,7 @@ export class SignInForm extends Component {
   }
 }
 
-SignInForm.PropTypes = {
+SignInForm.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired

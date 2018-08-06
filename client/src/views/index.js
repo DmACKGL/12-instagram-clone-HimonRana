@@ -6,4 +6,5 @@ export { default as Profile } from "./Profile";
 export { default as AllProfiles } from "./AllProfiles";
 export { default as UsersProfile } from "./UsersProfile";
 export { default as ProfileEdit } from "./ProfileEdit";
+export { default as CreatePost } from "./CreatePost";
 export { default as NotFoundPage } from "./NotFoundPage";

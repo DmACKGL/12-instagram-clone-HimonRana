@@ -8,7 +8,6 @@ const Post = require("../models/Post");
 const Profile = require("../models/Profile");
 
 // Load Input Validation
-const validatePostInput = require("../validation/post");
 
 // @Route   GET /posts
 // @Desc    Get posts
@@ -36,16 +35,11 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
-
-    // To check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
 
     const newPost = new Post({
-      text: req.body.text,
       name: req.body.name,
+      text: req.body.text,
+      postImg: req.body.postImg,
       user: req.user.id
     });
 

@@ -12,6 +12,7 @@ import {
   Explore,
   SignUp,
   SignIn,
+  CreatePost,
   ProfileEdit,
   NotFoundPage
 } from "../../views";
@@ -23,13 +24,14 @@ const App = children => (
     <Header />
     <Switch>
       <Route exact path="/" component={SignIn} />
-      <Route path="/signup" component={SignUp} />
+      <Route exact path="/signup" component={SignUp} />
       <Route exact path="/profile/:id" component={UsersProfile} />
       <PrivateRoute exact path="/profile" component={Profile} />
-      <PrivateRoute path="/profiles" component={AllProfiles} />
-      <PrivateRoute path="/dashboard" component={ProfileEdit} />
-      <PrivateRoute path="/explore" component={Explore} />
-      <PrivateRoute path="/home" component={Home} />
+      <PrivateRoute exact path="/profiles" component={AllProfiles} />
+      <PrivateRoute exact path="/createpost" component={CreatePost} />
+      <PrivateRoute exact path="/dashboard" component={ProfileEdit} />
+      <PrivateRoute exact path="/explore" component={Explore} />
+      <PrivateRoute exact path="/home" component={Home} />
       <Route component={NotFoundPage} />
     </Switch>
     <Footer />

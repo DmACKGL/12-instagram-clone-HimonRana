@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import {
-  fetchPhotos
-} from 'actions';
+import { fetchPhotos } from "actions";
 import { Photo } from "../components/Photo";
+import Spinner from "../components/common/Spinner";
 
 class PhotoFeed extends Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class PhotoFeed extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchPhotos())
+    this.props.dispatch(fetchPhotos());
   }
 
   render() {
@@ -22,7 +21,7 @@ class PhotoFeed extends Component {
 
     return (
       <div>
-        { 
+        {
           // photos.map((photo) => (
           //   <li key={photo.id}>
           //     <Photo photo={photo} />
@@ -31,7 +30,7 @@ class PhotoFeed extends Component {
         }
         <Photo />
         <Photo />
-        </div>
+      </div>
     );
   }
 }

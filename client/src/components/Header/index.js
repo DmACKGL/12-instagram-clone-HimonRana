@@ -37,6 +37,11 @@ class Header extends Component {
         <nav className="nav">
           <ul className="Header__nav-group d-flex align-items-center">
             <li className="Header__nav-link">
+              <Link title="Create Post" to="/createpost">
+              <i className="fas fa-plus-circle"></i>
+              </Link>
+            </li>
+            <li className="Header__nav-link">
               <Link title="Explore" to="/explore">
                 <i className="far fa-compass" />
               </Link>
