@@ -1,43 +1,42 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import classnames from 'classnames';
+import { deletePost, addLike, removeLike } from "../../actions/postActions";
 
 import Spinner from "../common/Spinner";
 import "./Photo.css";
 
-export class Photo extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      response: ""
-    };
+class Photo extends Component {
+  onDeleteClick(id) {
+    this.props.deletePost(id);
   }
 
-  componentDidMount() {
-    this.apiCall();
+  onLikeClick(id) {
+    this.props.addLike(id);
   }
 
-  apiCall() {
-    fetch("/users")
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ response: res });
-      })
-      .catch(err => console.log(err));
+  onUnlikeClick(id) {
+    this.props.removeLike(id);
+  }
+
+  findUserLike(likes) {
+    const { auth } = this.props;
+    if (likes.filter(like => like.user === auth.user.id).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {
-    const { photo, isFetching } = this.props;
+    const { post, auth } = this.props;
+    console.log(auth);
     let photoContent;
-    let spinner = <Spinner />;
 
-    if (isFetching) {
-      photoContent = spinner;
-    } else {
-      photoContent = (
-        <article className="Photo__root">
+    photoContent = (
+      <article className="Photo__root">
         <div className="Photo-header">
           <div className="Photo-header__avatar-container">
             <img
@@ -48,75 +47,96 @@ export class Photo extends Component {
           </div>
           <div className="Photo-header__metadata-container">
             <div className="Photo-header__username">
-              <Link to={`/${"johnny"}`}>{"John Appleseed"}</Link>
-            </div>
-            <div className="Photo-header__address">
-              <Link to={`/explore/locations/${0}`}>{"New York City"}</Link>
+              <Link to={`/profile/${auth.user.id}`}>{auth.user.name}</Link>
             </div>
           </div>
+          <div className="delete ml-auto">
+            {post.user === auth.user.id ? (
+              <button
+                onClick={this.onDeleteClick.bind(this, post._id)}
+                type="submit"
+                className="btn btn-danger"
+              >
+                <i className="fas fa-times" />
+              </button>
+            ) : null}
+          </div>
         </div>
-        <div className={`Photo__body`}>
-          <img
-            src="https://picsum.photos/200/200/?random"
-            alt={`${"username"} profile`}
-          />
+        <div className="Photo__body">
+          <img src={post.postImg} alt={`${auth.user.name} profile`} />
         </div>
         <div className="Photo__like-button ml-4 mt-2">
-          <button className="btn-outline-danger">
-            <i class="far fa-heart" />
+          <button
+            onClick={this.onLikeClick.bind(this, post._id)}
+            className={classnames("btn-outline-danger", {
+              "text-white bg-danger": this.findUserLike(post.likes)
+            })}
+          >
+            <i className="far fa-heart" />
           </button>
+          <button
+            onClick={this.onUnlikeClick.bind(this, post._id)}
+            className="btn-outline-secondary"
+          >
+            x
+          </button>
+        </div>
+        <div className="likes pl-4 pt-2">
+          <p className="text-sm">{post.likes.length} Likes</p>
         </div>
         <div className="Photo__comments container ml-2 mr-2 mt-2">
           <ul className="m-0">
             <li className="mb-2">
               <div className="">
-                <Link className="font-weight-bold" to={"/profile/:id/"}>
-                  {"John Applemunk: "}
+                <Link className="font-weight-bold" to={`/profile/${post._id}`}>
+                  {auth.user.name + ": "}
                 </Link>
-                  Hello im a comment am cool cool coolc oocl lorem uipsnuf
-                  uibadfwaiub baiwudf.
+                {post.text}
               </div>
             </li>
-            <li className="mb-2">
+            {/* <li className="mb-2">
               <div className="">
                 <Link className="font-weight-bold" to={"/profile/:id/"}>
                   {"John Applemunk: "}
                 </Link>
-                  Hello im a comment am cool cool coolc oocl lorem uipsnuf
-                  uibadfwaiub baiwudf.
+                Hello im a comment am cool cool coolc oocl lorem uipsnuf
+                uibadfwaiub baiwudf.
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="Photo__footer">
           <div className="Photo-header__timestamp">
-            <small>10 hours ago</small>
+            <small>{post.date}</small>
           </div>
           <div className="Photo__action-box">
             <div className="Photo__comment-box">
-            <form>
-              <input type="text" placeholder="Comment here" />
-            </form>
+              <form>
+                <input type="text" placeholder="Comment here" />
+              </form>
             </div>
           </div>
         </div>
       </article>
-      );
-    }
-
-    return (
-      <div>
-        {photoContent}
-      </div>
     );
+
+    return <div>{photoContent}</div>;
   }
 }
 
-const mapStateToProps = state => ({});
+Photo.propTypes = {
+  deletePost: PropTypes.func.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
+};
 
-const mapDispatchToProps = {};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { deletePost, addLike, removeLike }
 )(Photo);

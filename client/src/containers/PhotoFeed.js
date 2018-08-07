@@ -1,42 +1,43 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
-import { fetchPhotos } from "actions";
-import { Photo } from "../components/Photo";
+import { getPosts } from '../actions/postActions';
+import { Photo } from "../components";
 import Spinner from "../components/common/Spinner";
 
 class PhotoFeed extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   componentDidMount() {
-    this.props.dispatch(fetchPhotos());
+    this.props.getPosts();
   }
 
   render() {
-    const { photos } = this.props;
+    const { posts, loading } = this.props.post;
+    let postContent;
+    console.log(posts);
+
+    if (loading) {
+      postContent = <Spinner />
+    } else {
+       postContent = posts.map(post => <Photo key={post._id} post={post} />)
+    }
+
 
     return (
       <div>
-        {
-          // photos.map((photo) => (
-          //   <li key={photo.id}>
-          //     <Photo photo={photo} />
-          //   </li>
-          // ))
-        }
-        <Photo />
-        <Photo />
+        {postContent}
       </div>
     );
   }
 }
 
+PhotoFeed.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
-  photos: state.photos
+  post: state.post
 });
 
-export default connect(mapStateToProps)(PhotoFeed);
+export default connect(mapStateToProps, { getPosts })(PhotoFeed);

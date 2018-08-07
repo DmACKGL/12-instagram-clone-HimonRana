@@ -128,7 +128,7 @@ router.post(
           }
 
           // Get remove index
-          const removeIndex = posts.likes
+          const removeIndex = post.likes
             .map(item => item.user.toString())
             .indexOf(req.user.id);
 
