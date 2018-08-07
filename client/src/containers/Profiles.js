@@ -14,7 +14,7 @@ export class Profiles extends Component {
   render() {
     const { users, loading } = this.props.profile;
     let profileItems;
-    console.log(this.props.profile);
+    // console.log(this.props.profile);
 
     if (loading) {
       profileItems = <Spinner />;

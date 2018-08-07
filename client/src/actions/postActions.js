@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ADD_POST, GET_ERRORS } from "./types";
+import { ADD_POST } from "./types";
 
 // Add Post
 export const addPost = postData => dispatch => {
@@ -8,11 +8,6 @@ export const addPost = postData => dispatch => {
     dispatch({
       type: ADD_POST,
       payload: res.data
-    }).catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    )
+    })
   );
 };

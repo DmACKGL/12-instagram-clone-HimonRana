@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
+const bodyParser = require("body-parser");
+
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
 
 // Post/Profile model
 const Post = require("../models/Post");
@@ -35,12 +39,11 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-
     const newPost = new Post({
-      name: req.body.name,
+      user: req.user.id,
+      author: req.user.name,
       text: req.body.text,
-      postImg: req.body.postImg,
-      user: req.user.id
+      postImg: req.body.postImg
     });
 
     newPost.save().then(post => res.json(post));

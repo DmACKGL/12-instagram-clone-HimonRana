@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { addPost } from "../actions/postActions";
 import { getCurrentProfile } from "../actions/profileActions";
 
-export class PostForm extends Component {
+class PostForm extends Component {
   constructor(props) {
     super(props);
 
@@ -17,6 +17,10 @@ export class PostForm extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -24,18 +28,19 @@ export class PostForm extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    // const { profile } = this.props;
-    // console.log("PROFILE HERE" + profile);
-    const { user } = this.props.auth;
-    console.log("USER HERE" + user);
+    const { profile } = this.props.profile;
+    console.log(profile);
 
-    const newPost = {
+    const postData = {
+      authorName: profile.user.name,
+      authorImg: profile.imgUrl,
       text: this.state.text,
-      name: user.name,
       postImg: this.state.postImg
     };
 
-    this.props.addPost(newPost);
+    this.props.addPost(postData);
+    this.setState({ text: "", postImg: "" });
+    console.log(postData);
   }
 
   render() {
@@ -74,6 +79,7 @@ export class PostForm extends Component {
 
 PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -85,5 +91,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addPost }
+  { addPost, getCurrentProfile }
 )(PostForm);

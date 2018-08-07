@@ -24,8 +24,8 @@ export const getCurrentProfile = () => dispatch => {
     )
     .catch(err => {
       dispatch({
-        type: GET_PROFILE,
-        payload: {}
+        type: GET_ERRORS,
+        payload: err.data
       });
     });
 };
@@ -43,8 +43,8 @@ export const getProfileById = (id) => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILE,
-        payload: null
+        type: GET_ERRORS,
+        payload: err.data
       })
     );
 };

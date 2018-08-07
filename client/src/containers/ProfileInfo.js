@@ -19,7 +19,7 @@ class ProfileInfo extends Component {
 
   componentDidMount() {
     this.props.getCurrentProfile();
-    console.log(this.props.match);
+    // console.log(this.props.match);
 
     if (this.props.match.params._id) {
       this.props.getProfileById(this.props.match.params._id);
@@ -30,6 +30,7 @@ class ProfileInfo extends Component {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
     console.log(profile);
+    console.log(user);
     const avatar = `https://api.adorable.io/avatars/100/${
       user.name
     }@adorable.png`;
