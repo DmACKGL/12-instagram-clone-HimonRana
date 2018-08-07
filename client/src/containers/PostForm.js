@@ -29,7 +29,6 @@ class PostForm extends Component {
     e.preventDefault();
 
     const { profile } = this.props.profile;
-    console.log(profile);
 
     const postData = {
       authorName: profile.user.name,
