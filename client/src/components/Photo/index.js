@@ -9,18 +9,18 @@ import Spinner from "../common/Spinner";
 import "./Photo.css";
 
 class Photo extends Component {
-  constructor(props) {
-    super(props)
+  // constructor(props) {
+  //   super(props)
   
-    this.state = {
-       isToggleOn: true
-    }
+  //   this.state = {
+  //      isToggleOn: true
+  //   }
 
-    this.toggleClick = this.toggleClick.bind(this);
-  }
+  //   this.toggleClick = this.toggleClick.bind(this);
+  // }
 
   componentDidMount() {
-    this.props.getPosts();
+    this.props.getPost();
   }
 
   toggleClick() {
@@ -96,7 +96,6 @@ class Photo extends Component {
           </button>
         {/* ) : ( */}
           <button
-            onClick={this.toggleClick}
             onClick={this.onUnlikeClick.bind(this, post._id)}
             className="btn-outline-secondary"
           >
