@@ -2,16 +2,22 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import classnames from 'classnames';
-import { deletePost, addLike, removeLike, getPost } from "../../actions/postActions";
+import classnames from "classnames";
+import {
+  deletePost,
+  addLike,
+  removeLike
+} from "../../actions/postActions";
 
 import Spinner from "../common/Spinner";
 import "./Photo.css";
+import CommentForm from "../../containers/CommentForm";
+import CommentDisplay from "../../containers/CommentDisplay";
 
 class Photo extends Component {
   // constructor(props) {
   //   super(props)
-  
+
   //   this.state = {
   //      isToggleOn: true
   //   }
@@ -19,16 +25,16 @@ class Photo extends Component {
   //   this.toggleClick = this.toggleClick.bind(this);
   // }
 
-  componentDidMount() {
-    this.props.getPost();
-  }
+  // componentDidMount() {
+  //   this.props.getPost();
+  // }
 
   toggleClick() {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
     }));
   }
-  
+
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
@@ -52,6 +58,8 @@ class Photo extends Component {
 
   render() {
     const { post, auth } = this.props;
+    const { comments } = this.props.post;
+    console.log(comments);
     let photoContent;
 
     photoContent = (
@@ -85,46 +93,40 @@ class Photo extends Component {
           <img src={post.postImg} alt={`${auth.user.name} profile`} />
         </div>
         <div className="Photo__like-button ml-4 mt-2">
-        {/* { this.state.isToggleOn ? ( */}
+          {/* { this.state.isToggleOn ? ( */}
           <button
             onClick={this.onLikeClick.bind(this, post._id)}
+            // className="btn-outline-danger"
             className={classnames("btn-outline-danger", {
               "text-white bg-danger": this.findUserLike(post.likes)
             })}
           >
             <i className="far fa-heart" />
           </button>
-        {/* ) : ( */}
+          {/* ) : ( */}
           <button
             onClick={this.onUnlikeClick.bind(this, post._id)}
             className="btn-outline-secondary"
           >
             x
           </button>
-        {/* )} */}
+          {/* )} */}
         </div>
         <div className="likes pl-4 pt-2">
           <p className="text-sm">{post.likes.length} Likes</p>
         </div>
         <div className="Photo__comments container ml-2 mr-2 mt-2">
+        {/* COMMENTS HERE */}
           <ul className="m-0">
             <li className="mb-2">
               <div className="">
-                <Link className="font-weight-bold" to={`/profile/${post._id}`}>
+                <Link className="font-weight-bold" to={`/profile/${auth.user.id}`}>
                   {auth.user.name + ": "}
                 </Link>
                 {post.text}
               </div>
             </li>
-            {/* <li className="mb-2">
-              <div className="">
-                <Link className="font-weight-bold" to={"/profile/:id/"}>
-                  {"John Applemunk: "}
-                </Link>
-                Hello im a comment am cool cool coolc oocl lorem uipsnuf
-                uibadfwaiub baiwudf.
-              </div>
-            </li> */}
+          <CommentDisplay postId={post._id} comments={post.comments}/>
           </ul>
         </div>
         <div className="Photo__footer">
@@ -132,11 +134,7 @@ class Photo extends Component {
             <small>{post.date}</small>
           </div>
           <div className="Photo__action-box">
-            <div className="Photo__comment-box">
-              <form>
-                <input type="text" placeholder="Comment here" />
-              </form>
-            </div>
+            <CommentForm postId={post._id} />
           </div>
         </div>
       </article>
@@ -149,7 +147,7 @@ class Photo extends Component {
 Photo.propTypes = {
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
-  getPost: PropTypes.func.isRequired,
+  // getPost: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
@@ -157,10 +155,10 @@ Photo.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  post: state.post
+  // post: state.post
 });
 
 export default connect(
   mapStateToProps,
-  { deletePost, addLike, removeLike, getPost }
+  { deletePost, addLike, removeLike }
 )(Photo);

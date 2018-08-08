@@ -8,3 +8,6 @@ export { default as ProfileInfo } from "./ProfileInfo";
 export { default as Profiles } from "./Profiles";
 export { default as PostForm } from "./PostForm";
 export { default as OtherUser } from "./OtherUser";
+export { default as CommentForm } from "./CommentForm";
+export { default as CommentFeed } from "./CommentFeed";
+export { default as CommentDisplay } from "./CommentDisplay";
