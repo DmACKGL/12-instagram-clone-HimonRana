@@ -3,12 +3,32 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import classnames from 'classnames';
-import { deletePost, addLike, removeLike } from "../../actions/postActions";
+import { deletePost, addLike, removeLike, getPost } from "../../actions/postActions";
 
 import Spinner from "../common/Spinner";
 import "./Photo.css";
 
 class Photo extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       isToggleOn: true
+    }
+
+    this.toggleClick = this.toggleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getPosts();
+  }
+
+  toggleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+  
   onDeleteClick(id) {
     this.props.deletePost(id);
   }
@@ -32,7 +52,6 @@ class Photo extends Component {
 
   render() {
     const { post, auth } = this.props;
-    console.log(auth);
     let photoContent;
 
     photoContent = (
@@ -66,6 +85,7 @@ class Photo extends Component {
           <img src={post.postImg} alt={`${auth.user.name} profile`} />
         </div>
         <div className="Photo__like-button ml-4 mt-2">
+        {/* { this.state.isToggleOn ? ( */}
           <button
             onClick={this.onLikeClick.bind(this, post._id)}
             className={classnames("btn-outline-danger", {
@@ -74,12 +94,15 @@ class Photo extends Component {
           >
             <i className="far fa-heart" />
           </button>
+        {/* ) : ( */}
           <button
+            onClick={this.toggleClick}
             onClick={this.onUnlikeClick.bind(this, post._id)}
             className="btn-outline-secondary"
           >
             x
           </button>
+        {/* )} */}
         </div>
         <div className="likes pl-4 pt-2">
           <p className="text-sm">{post.likes.length} Likes</p>
@@ -127,16 +150,18 @@ class Photo extends Component {
 Photo.propTypes = {
   deletePost: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
+  getPost: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  post: state.post
 });
 
 export default connect(
   mapStateToProps,
-  { deletePost, addLike, removeLike }
+  { deletePost, addLike, removeLike, getPost }
 )(Photo);
