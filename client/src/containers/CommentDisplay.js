@@ -11,17 +11,17 @@ class CommentDisplay extends Component {
 
     return (
       <div>
-          {/* { comments.map((comment) => ())
+          { comments.map((comment) => (
         <li className="mb-2">
           <div className="">
             <Link className="font-weight-bold" to={`/profile/${auth.user.id}`}>
               {auth.user.name + ": "}
             </Link>
-            {comments.text}
-            
+            {comment.text}
           </div>
-        </li> */}
-          }
+        </li>
+          ))
+        }
       </div>
     );
   }
