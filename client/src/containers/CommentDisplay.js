@@ -7,15 +7,15 @@ import PropTypes from "prop-types";
 class CommentDisplay extends Component {
   render() {
     const { comments, postId, auth, post } = this.props;
-    console.log(comments);
+    // console.log(this.props);
 
     return (
       <div>
           { comments.map((comment) => (
         <li className="mb-2">
           <div className="">
-            <Link className="font-weight-bold" to={`/profile/${auth.user.id}`}>
-              {auth.user.name + ": "}
+            <Link className="font-weight-bold" to={`/profile/${comment.user}`}>
+              {comment.name + ": "}
             </Link>
             {comment.text}
           </div>

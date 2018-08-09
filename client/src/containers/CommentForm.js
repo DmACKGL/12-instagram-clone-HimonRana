@@ -22,7 +22,8 @@ class CommentForm extends Component {
   
     const commentData = {
       text: this.state.text,
-      name: user.name
+      name: user.name,
+      user: user.id
     };
 
     this.props.addComment(postId, commentData);
@@ -56,7 +57,8 @@ CommentForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  post: state.post
 });
 
 export default connect(

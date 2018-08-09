@@ -14,7 +14,7 @@ class PhotoFeed extends Component {
   render() {
     const { posts, loading } = this.props.post;
     let postContent;
-    console.log(posts);
+    // console.log(posts);
 
     if (loading) {
       postContent = <Spinner />

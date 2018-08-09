@@ -4,6 +4,8 @@ import {
   ADD_POST,
   GET_POSTS,
   GET_POST,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAIL,
   POST_LOADING,
   DELETE_POST,
   GET_ERRORS
@@ -44,8 +46,14 @@ export const addComment = (postId, commentData) => dispatch => {
     .post(`/posts/comment/${postId}`, commentData)
     .then(res =>
       dispatch({
-        type: GET_POST,
+        type: ADD_COMMENT_SUCCESS,
         payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: ADD_COMMENT_FAIL,
+        payload: err.response.data
       })
     )
 };

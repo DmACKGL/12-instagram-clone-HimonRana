@@ -39,14 +39,15 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const newPost = new Post({
-      user: req.user.id,
-      author: req.user.name,
-      text: req.body.text,
-      postImg: req.body.postImg
-    });
-
-    newPost.save().then(post => res.json(post));
+      
+      const newPost = new Post({
+        user: req.user.id,
+        name: req.user.name,
+        text: req.body.text,
+        postImg: req.body.postImg
+      });
+  
+      newPost.save().then(post => res.json(post));
   }
 );
 

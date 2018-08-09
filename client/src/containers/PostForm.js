@@ -29,10 +29,11 @@ class PostForm extends Component {
     e.preventDefault();
 
     const { profile } = this.props.profile;
+    console.log(profile);
 
     const postData = {
-      authorName: profile.user.name,
-      authorImg: profile.imgUrl,
+      name: profile.user.name,
+      profileImg: profile.imgUrl,
       text: this.state.text,
       postImg: this.state.postImg
     };

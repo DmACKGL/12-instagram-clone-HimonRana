@@ -15,3 +15,8 @@ export const GET_POST = "GET_POST";
 export const GET_POSTS = "GET_POSTS";
 export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
+
+// Comments
+export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
+export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
+

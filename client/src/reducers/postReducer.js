@@ -3,7 +3,8 @@ import {
   GET_POSTS,
   GET_POST,
   DELETE_POST,
-  POST_LOADING
+  POST_LOADING,
+  ADD_COMMENT_SUCCESS
 } from "../actions/types";
 
 const initialState = {
@@ -25,7 +26,7 @@ export default function(state = initialState, action) {
         posts: action.payload,
         loading: false
       };
-    case GET_POST:
+    case ADD_COMMENT_SUCCESS:
       return {
         ...state,
         post: action.payload,

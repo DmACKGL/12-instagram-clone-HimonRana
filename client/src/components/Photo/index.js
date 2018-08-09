@@ -59,7 +59,7 @@ class Photo extends Component {
   render() {
     const { post, auth } = this.props;
     const { comments } = this.props.post;
-    console.log(comments);
+    console.log(post);
     let photoContent;
 
     photoContent = (
@@ -74,7 +74,7 @@ class Photo extends Component {
           </div>
           <div className="Photo-header__metadata-container">
             <div className="Photo-header__username">
-              <Link to={`/profile/${auth.user.id}`}>{auth.user.name}</Link>
+              <Link to={`/profile/${post.user}`}>{post.name}</Link>
             </div>
           </div>
           <div className="delete ml-auto">
@@ -90,7 +90,7 @@ class Photo extends Component {
           </div>
         </div>
         <div className="Photo__body">
-          <img src={post.postImg} alt={`${auth.user.name} profile`} />
+          <img src={post.postImg}  />
         </div>
         <div className="Photo__like-button ml-4 mt-2">
           {/* { this.state.isToggleOn ? ( */}
@@ -120,8 +120,8 @@ class Photo extends Component {
           <ul className="m-0">
             <li className="mb-2">
               <div className="">
-                <Link className="font-weight-bold" to={`/profile/${auth.user.id}`}>
-                  {auth.user.name + ": "}
+                <Link className="font-weight-bold" to={`/profile/${post.user}`}>
+                  {post.name + ": "}
                 </Link>
                 {post.text}
               </div>
