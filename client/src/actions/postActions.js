@@ -8,6 +8,7 @@ import {
   ADD_COMMENT_FAIL,
   POST_LOADING,
   DELETE_POST,
+  DELETE_COMMENT,
   GET_ERRORS
 } from "./types";
 
@@ -56,6 +57,24 @@ export const addComment = (postId, commentData) => dispatch => {
         payload: err.response.data
       })
     )
+};
+
+// Delete Comment
+export const deleteComment = (postId, commentId) => dispatch => {
+  axios
+    .delete(`posts/comment/${postId}/${commentId}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_COMMENT,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
 
 // Get Comment Post

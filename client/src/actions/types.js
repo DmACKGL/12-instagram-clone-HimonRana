@@ -19,4 +19,6 @@ export const DELETE_POST = "DELETE_POST";
 // Comments
 export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
+export const DELETE_COMMENT = "DELETE_COMMENT";
+
 

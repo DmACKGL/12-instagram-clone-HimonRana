@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import classnames from "classnames";
-import {
-  deletePost,
-  addLike,
-  removeLike
-} from "../../actions/postActions";
+import { deletePost, addLike, removeLike } from "../../actions/postActions";
 
 import Spinner from "../common/Spinner";
 import "./Photo.css";
@@ -56,6 +52,10 @@ class Photo extends Component {
     }
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+  }
+
   render() {
     const { post, auth } = this.props;
     const { comments } = this.props.post;
@@ -90,33 +90,35 @@ class Photo extends Component {
           </div>
         </div>
         <div className="Photo__body">
-          <img src={post.postImg}  />
+          <img src={post.postImg} />
         </div>
         <div className="Photo__like-button ml-4 mt-2">
           {/* { this.state.isToggleOn ? ( */}
-          <button
-            onClick={this.onLikeClick.bind(this, post._id)}
-            // className="btn-outline-danger"
-            className={classnames("btn-outline-danger", {
-              "text-white bg-danger": this.findUserLike(post.likes)
-            })}
-          >
-            <i className="far fa-heart" />
-          </button>
-          {/* ) : ( */}
-          <button
-            onClick={this.onUnlikeClick.bind(this, post._id)}
-            className="btn-outline-secondary"
-          >
-            x
-          </button>
-          {/* )} */}
+          <form onSubmit={this.onSubmit.bind(this)}>
+            <button
+              onClick={this.onLikeClick.bind(this, post._id)}
+              // className="btn-outline-danger"
+              className={classnames("btn-outline-danger", {
+                "text-white bg-danger": this.findUserLike(post.likes)
+              })}
+            >
+              <i className="far fa-heart" />
+            </button>
+            {/* ) : ( */}
+            <button
+              onClick={this.onUnlikeClick.bind(this, post._id)}
+              className="btn-outline-secondary"
+            >
+              x
+            </button>
+            {/* )} */}
+          </form>
         </div>
         <div className="likes pl-4 pt-2">
           <p className="text-sm">{post.likes.length} Likes</p>
         </div>
         <div className="Photo__comments container ml-2 mr-2 mt-2">
-        {/* COMMENTS HERE */}
+          {/* COMMENTS HERE */}
           <ul className="m-0">
             <li className="mb-2">
               <div className="">
@@ -126,7 +128,7 @@ class Photo extends Component {
                 {post.text}
               </div>
             </li>
-          <CommentDisplay postId={post._id} comments={post.comments}/>
+            <CommentDisplay postId={post._id} comments={post.comments} />
           </ul>
         </div>
         <div className="Photo__footer">
@@ -154,7 +156,7 @@ Photo.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.auth
   // post: state.post
 });
 

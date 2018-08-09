@@ -28,6 +28,7 @@ class CommentForm extends Component {
 
     this.props.addComment(postId, commentData);
     this.setState({ text: "" });
+    window.location.reload(false);
   }
 
   onChange(e) {
