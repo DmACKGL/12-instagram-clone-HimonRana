@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { addPost } from "../actions/postActions";
 import { getCurrentProfile } from "../actions/profileActions";
 
@@ -40,6 +41,7 @@ class PostForm extends Component {
 
     this.props.addPost(postData);
     this.setState({ text: "", postImg: "" });
+    this.props.history.push("/home");
     console.log(postData);
   }
 
@@ -92,4 +94,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { addPost, getCurrentProfile }
-)(PostForm);
+)(withRouter(PostForm));
