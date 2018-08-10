@@ -1,27 +1,38 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 import "./PhotoGrid.css";
 
 export class PhotoGrid extends Component {
   render() {
+    // const { post } = this.props;
+    console.log(this.props.postImg);
     return (
       <div>
         <div className="grid-container">
+          {/* <div className="gridPhoto" style={{backgroundImage: `url('${this.props.postImg}')`}}>
+            
+          </div> */}
+          <div className="gridPhoto" style={{backgroundImage: "url('https://picsum.photos/1920/1083/?random')"}}>
+            
+          </div>
+          <div className="gridPhoto" style={{backgroundImage: "url('https://picsum.photos/1920/1082/?random')"}}>
+        
+          </div>
+          <div className="gridPhoto" style={{backgroundImage: "url('https://picsum.photos/1920/1980/?random')"}}>
+            
+          </div>
           <div>
             <img
               className="gridPhoto"
-              src="https://picsum.photos/100/100/?random"
+              src="https://picsum.photos/1920/1000/?random"
             />
           </div>
           <div>
             <img
               className="gridPhoto"
-              src="https://picsum.photos/200/200/?random"
-            />
-          </div>
-          <div>
-            <img
-              className="gridPhoto"
-              src="https://picsum.photos/300/300/?random"
+              src="https://picsum.photos/1921/1921/?random"
             />
           </div>
         </div>
@@ -30,4 +41,14 @@ export class PhotoGrid extends Component {
   }
 }
 
-export default PhotoGrid;
+PhotoGrid.propTypes = {
+  posts: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  posts: state.post
+});
+
+export default connect(
+  mapStateToProps,
+)(PhotoGrid);

@@ -29,14 +29,10 @@ export default function(state = initialState, action) {
     case ADD_COMMENT_SUCCESS:
       return {
         ...state,
-        posts: state.posts.map((post, index) => {
-          if (action.payload._id === post._id) {
-            post: action.payload;
-          }
-          return post;
-        }),
+        post: action.payload,
         loading: false
       };
+      return state;
     case ADD_POST:
       return {
         ...state,
