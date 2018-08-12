@@ -8,6 +8,10 @@
   grid-template-areas: "" ". . ." ". . .";
 }
 
+img {
+  object-fit: cover;
+}
+
 .gridPhoto {
   background-size: cover;
   background-position: center center;
