@@ -43,8 +43,8 @@ export const getProfileById = (id) => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
-        payload: err.data
+        type: GET_PROFILE,
+        payload: err.response.data
       })
     );
 };

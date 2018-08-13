@@ -39,15 +39,14 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-      
-      const newPost = new Post({
-        user: req.user.id,
-        name: req.user.name,
-        text: req.body.text,
-        postImg: req.body.postImg
-      });
-  
-      newPost.save().then(post => res.json(post));
+    const newPost = new Post({
+      user: req.user.id,
+      name: req.user.name,
+      text: req.body.text,
+      postImg: req.body.postImg
+    });
+
+    newPost.save().then(post => res.json(post));
   }
 );
 
@@ -156,7 +155,7 @@ router.post(
         const newComment = {
           text: req.body.text,
           name: req.body.name,
-          user: req.body.id
+          user: req.user.id
         };
 
         // Add to comments array

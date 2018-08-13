@@ -6,6 +6,10 @@
   height: 150px;
 }
 
+img {
+  object-fit: cover;
+}
+
 .profileContent {
   padding-bottom: 4em;
 }

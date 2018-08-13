@@ -25,6 +25,7 @@ class Photo extends Component {
   //   this.props.getPost();
   // }
 
+
   toggleClick() {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
@@ -59,7 +60,7 @@ class Photo extends Component {
   render() {
     const { post, auth } = this.props;
     const { comments } = this.props.post;
-    console.log(post);
+    // console.log(post);
     let photoContent;
 
     photoContent = (
@@ -128,7 +129,7 @@ class Photo extends Component {
                 {post.text}
               </div>
             </li>
-            <CommentDisplay postId={post._id} comments={post.comments} />
+            <CommentDisplay key={post._id} postId={post._id} comments={post.comments} />
           </ul>
         </div>
         <div className="Photo__footer">
@@ -136,7 +137,7 @@ class Photo extends Component {
             <small>{post.date}</small>
           </div>
           <div className="Photo__action-box">
-            <CommentForm postId={post._id} />
+            <CommentForm key={post._id} postId={post._id} />
           </div>
         </div>
       </article>

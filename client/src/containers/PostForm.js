@@ -41,7 +41,7 @@ class PostForm extends Component {
 
     this.props.addPost(postData);
     this.setState({ text: "", postImg: "" });
-    // this.props.history.push("/home");
+    this.props.history.push("/home");
     console.log(postData);
   }
 

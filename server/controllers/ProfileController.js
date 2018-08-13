@@ -65,12 +65,12 @@ router.get("/:id", (req, res) => {
   const erros = {};
 
   Profile.findOne({ user: req.params.user_id })
-    .populate("user", ["name"])
+    .populate("user", ["name", "text", "postImg"])
     .then(profile => {
-      if (!profile || profile.length === 0) {
-        errors.noprofile = "This user has no profile";
-        res.status(404).json(errors);
-      }
+      // if (!profile || profile.length === 0) {
+      //   errors.noprofile = "This user has no profile";
+      //   res.status(404).json(errors);
+      // }
 
       res.json(profile);
     })
