@@ -25,7 +25,7 @@ export const addPost = postData => dispatch => {
 // Get Posts
 export const getPosts = () => dispatch => {
   dispatch(setPostLoading());
-  axios
+  return axios
     .get("/posts")
     .then(res =>
       dispatch({
@@ -43,20 +43,26 @@ export const getPosts = () => dispatch => {
 
 // Add Comment
 export const addComment = (postId, commentData) => dispatch => {
-  axios
-    .post(`/posts/comment/${postId}`, commentData)
-    .then(res =>
-      dispatch({
-        type: ADD_COMMENT_SUCCESS,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: ADD_COMMENT_FAIL,
-        payload: err.response.data
-      })
-    )
+  console.log("action called");
+  axios.post(`/posts/comment/${postId}`, commentData).then(res => {
+    console.log(commentData);
+    let postId = res.data._id;
+    let comment = commentData;
+
+    return dispatch({
+      type: ADD_COMMENT_SUCCESS,
+      payload: {
+        postId: postId,
+        comment: comment
+      }
+    });
+  });
+  // .catch(err =>
+  //   dispatch({
+  //     type: ADD_COMMENT_FAIL,
+  //     payload: err.response.data
+  //   })
+  // )
 };
 
 // Delete Comment
