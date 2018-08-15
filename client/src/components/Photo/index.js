@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 
-import Spinner from "../common/Spinner";
 import "./Photo.css";
 import CommentForm from "../../containers/CommentForm";
 import CommentDisplay from "../../containers/CommentDisplay";
@@ -44,7 +43,7 @@ class Photo extends Component {
   }
 
   findUserLike(likes) {
-    const { auth, post } = this.props;
+    // const { auth, post } = this.props;
     // if (post.likes.filter(like => like.user === auth.user.id).length > 0) {
     //   return true;
     // } else {
@@ -52,22 +51,11 @@ class Photo extends Component {
     // }
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-  }
+
 
   render() {
-    const { auth, loading, post } = this.props;
-
-    // console.log(post);
-
-    // let photoContent;
-
-    // if (loading) {
-    //   photoContent = <Spinner />;
-    // } else {
-    //   photoContent =
-    // }
+    const { post } = this.props;
+    console.log(this.props);
 
     return (
       <article className="Photo__root">
@@ -97,10 +85,10 @@ class Photo extends Component {
           </div>
         </div>
         <div className="Photo__body">
-          <img src={post.postImg} />
+          <img src={post.postImg} alt="" />
         </div>
         <div className="Photo__like-button ml-4 mt-2">
-          <form onSubmit={this.onSubmit.bind(this)}>
+
             <button
               onClick={this.onLikeClick.bind(this, post._id)}
               className={classnames("btn-outline-danger", {
@@ -116,7 +104,7 @@ class Photo extends Component {
             >
               x
             </button>
-          </form>
+
         </div>
         <div className="likes pl-4 pt-2">
           <p className="text-sm">{post.likes.length} Likes</p>

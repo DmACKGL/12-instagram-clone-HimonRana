@@ -46,8 +46,9 @@ class ProfileInfo extends Component {
           <div className="infoProfile row d-flex flex-nowrap">
             <div className="imgUrl col-6 d-flex justify-content-center">
               <img
-                src={(profile === null || profile.imgUrl == "") ? avatar : profile.imgUrl}
-                className="profileAvatar rounded-circle "
+                src={(profile === null || profile.imgUrl === "") ? avatar : profile.imgUrl}
+                className="profileAvatar rounded-circle"
+                alt=""
               />
             </div>
             <div className="col-6 d-flex align-items-center">

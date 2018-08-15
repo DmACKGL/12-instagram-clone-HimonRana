@@ -21,7 +21,7 @@ class CommentDisplay extends Component {
       <div>
         {comments.length > 0 ? (
           comments.map(comment => (
-            <li className="mb-2">
+            <li className="mb-2" key={comment._id}>
               <div className="commentData">
                 <Link
                   className="font-weight-bold"
@@ -52,7 +52,6 @@ class CommentDisplay extends Component {
 
 CommentDisplay.propTypes = {
   deleteComment: PropTypes.func.isRequired,
-  comment: PropTypes.array.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
 };

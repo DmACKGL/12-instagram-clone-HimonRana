@@ -14,25 +14,39 @@ export class PhotoGrid extends Component {
           {/* <div className="gridPhoto" style={{backgroundImage: `url('${this.props.postImg}')`}}>
             
           </div> */}
-          <div className="gridPhoto" style={{backgroundImage: "url('https://picsum.photos/1920/1083/?random')"}}>
-            
-          </div>
-          <div className="gridPhoto" style={{backgroundImage: "url('https://picsum.photos/1920/1082/?random')"}}>
-        
-          </div>
-          <div className="gridPhoto" style={{backgroundImage: "url('https://picsum.photos/1920/1980/?random')"}}>
-            
-          </div>
+          <div
+            className="gridPhoto"
+            alt=""
+            style={{
+              backgroundImage: "url('https://picsum.photos/1920/1083/?random')"
+            }}
+          />
+          <div
+            className="gridPhoto"
+            alt=""
+            style={{
+              backgroundImage: "url('https://picsum.photos/1920/1082/?random')"
+            }}
+          />
+          <div
+            className="gridPhoto"
+            alt=""
+            style={{
+              backgroundImage: "url('https://picsum.photos/1920/1980/?random')"
+            }}
+          />
           <div>
             <img
               className="gridPhoto"
               src="https://picsum.photos/1920/1000/?random"
+              alt=""
             />
           </div>
           <div>
             <img
               className="gridPhoto"
               src="https://picsum.photos/1921/1921/?random"
+              alt=""
             />
           </div>
         </div>
@@ -49,6 +63,4 @@ const mapStateToProps = state => ({
   posts: state.post
 });
 
-export default connect(
-  mapStateToProps,
-)(PhotoGrid);
+export default connect(mapStateToProps)(PhotoGrid);

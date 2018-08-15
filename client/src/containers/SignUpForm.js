@@ -69,7 +69,7 @@ export class SignUpForm extends Component {
     return (
       <div className="signUpDiv">
         <div className="signUpBox">
-          <img src={avatar} className="userAvatar" />
+          <img src={avatar} className="userAvatar" alt=""/>
           <form
             noValidate
             className="SignUpForm__root"

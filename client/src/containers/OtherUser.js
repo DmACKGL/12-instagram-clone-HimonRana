@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { getProfileById } from "../actions/profileActions";
 import { PhotoGrid } from "./PhotoGrid";
@@ -34,8 +34,9 @@ class OtherUser extends Component {
           <div className="infoProfile row d-flex flex-nowrap">
             <div className="imgUrl col-6 d-flex justify-content-center">
               <img
-                src={(profile === null || profile.imgUrl == "") ? avatar : profile.imgUrl}
+                src={(profile === null || profile.imgUrl === "") ? avatar : profile.imgUrl}
                 className="profileAvatar rounded-circle "
+                alt=""
               />
             </div>
             <div className="col-6 d-flex align-items-center">
@@ -77,4 +78,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getProfileById }
-)(withRouter(OtherUser));
+)(OtherUser);

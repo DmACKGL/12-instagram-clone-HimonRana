@@ -6,7 +6,6 @@ import {
   GET_USERS,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
-  SET_CURRENT_USER,
   GET_ERRORS
 } from "./types";
 

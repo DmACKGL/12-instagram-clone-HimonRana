@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import isEmpty from "../validation/is-empty";
-import OtherUser from "./OtherUser";
 
 class Users extends Component {
   render() {
     const { profile } = this.props;
     console.log(this.props);
-
-    const otherUser = <OtherUser key={profile._id} profile={profile}/>;
 
     return (
       <div className="card card-body bg-light mb-3 ">

@@ -22,18 +22,18 @@ import "./App.css";
 const App = children => (
   <React.Fragment>
     <Header />
-    <Switch>
       <Route exact path="/" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/profile/:id" component={UsersProfile} />
+    <Switch>
       <PrivateRoute exact path="/profile" component={Profile} />
       <PrivateRoute exact path="/profiles" component={AllProfiles} />
       <PrivateRoute exact path="/createpost" component={CreatePost} />
       <PrivateRoute exact path="/dashboard" component={ProfileEdit} />
       <PrivateRoute exact path="/explore" component={Explore} />
       <PrivateRoute exact path="/home" component={Home} />
-      <Route component={NotFoundPage} />
     </Switch>
+      <Route component={NotFoundPage} />
     <Footer />
   </React.Fragment>
 );

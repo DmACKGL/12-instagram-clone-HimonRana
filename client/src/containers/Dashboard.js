@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -8,9 +8,7 @@ import {
   createProfile,
   deleteAccount
 } from "../actions/profileActions";
-import Spinner from "../components/common/Spinner";
 import isEmpty from "../validation/is-empty";
-import classnames from "classnames";
 import "./SignUpForm.css";
 
 class Dashboard extends Component {
@@ -67,9 +65,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
-    const { errors } = this.state;
-
     return (
       <div>
         <p className="lead font-weight-bold"> Edit Profile</p>
