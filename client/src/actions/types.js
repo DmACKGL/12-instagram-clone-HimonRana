@@ -21,4 +21,10 @@ export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
+// Likes
+export const ADD_LIKE = "ADD_LIKE";
+export const DELETE_LIKE = "DELETE_LIKE";
+
+
+
 

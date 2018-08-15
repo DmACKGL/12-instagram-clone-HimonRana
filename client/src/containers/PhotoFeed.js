@@ -16,37 +16,27 @@ class PhotoFeed extends Component {
     super(props);
 
     this.deletePost = this.deletePost.bind(this);
-    this.onLikeClick = this.onLikeClick.bind(this);
-    this.onUnlikeClick = this.onUnlikeClick.bind(this);
   }
 
   componentDidMount() {
     this.props.getPosts();
   }
 
-  deletePost(postId) {
-    this.props.deletePost(postId);
-  }
-
-  onLikeClick(userId) {
-    this.props.addLike(userId);
-  }
-
-  onUnlikeClick(userId) {
-    this.props.removeLike(userId);
+  deletePost(Id) {
+    this.props.deletePost(Id);
   }
 
   render() {
     const { posts, loading } = this.props;
-
+console.log(posts);
     let postContent;
 
     if (loading) {
       postContent = <Spinner />;
     } else {
-      postContent = posts.map(post => (
+      postContent = posts.map((post, index) => (
         <Photo
-          key={post._id}
+          key={index}
           post={post}
           onLikeClick={this.onLikeClick}
           onUnlikeClick={this.onUnlikeClick}

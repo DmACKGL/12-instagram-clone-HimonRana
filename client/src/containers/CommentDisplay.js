@@ -20,8 +20,8 @@ class CommentDisplay extends Component {
     return (
       <div>
         {comments.length > 0 ? (
-          comments.map(comment => (
-            <li className="mb-2" key={comment._id}>
+          comments.map((comment, index) => (
+            <li className="mb-2" key={index}>
               <div className="commentData">
                 <Link
                   className="font-weight-bold"

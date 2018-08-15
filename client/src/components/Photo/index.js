@@ -6,6 +6,7 @@ import classnames from "classnames";
 import "./Photo.css";
 import CommentForm from "../../containers/CommentForm";
 import CommentDisplay from "../../containers/CommentDisplay";
+import PostLikes from "../../containers/PostLikes";
 
 class Photo extends Component {
   constructor(props) {
@@ -34,28 +35,12 @@ class Photo extends Component {
     this.props.deletePost(id);
   }
 
-  onLikeClick(id) {
-    this.props.onLikeClick(id);
-  }
-
-  onUnlikeClick(id) {
-    this.props.onUnlikeClick(id);
-  }
-
-  findUserLike(likes) {
-    // const { auth, post } = this.props;
-    // if (post.likes.filter(like => like.user === auth.user.id).length > 0) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-  }
+  
 
 
 
   render() {
     const { post } = this.props;
-    console.log(this.props);
 
     return (
       <article className="Photo__root">
@@ -87,28 +72,7 @@ class Photo extends Component {
         <div className="Photo__body">
           <img src={post.postImg} alt="" />
         </div>
-        <div className="Photo__like-button ml-4 mt-2">
-
-            <button
-              onClick={this.onLikeClick.bind(this, post._id)}
-              className={classnames("btn-outline-danger", {
-                "text-white bg-danger": this.findUserLike(post.likes)
-              })}
-            >
-              <i className="far fa-heart" />
-            </button>
-
-            <button
-              onClick={this.onUnlikeClick.bind(this, post._id)}
-              className="btn-outline-secondary"
-            >
-              x
-            </button>
-
-        </div>
-        <div className="likes pl-4 pt-2">
-          <p className="text-sm">{post.likes.length} Likes</p>
-        </div>
+        <PostLikes post={post} />
         <div className="Photo__comments container ml-2 mr-2 mt-2">
           <ul className="m-0">
             <li className="mb-2">

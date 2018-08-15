@@ -1,5 +1,6 @@
 import {
   ADD_POST,
+  ADD_LIKE,
   GET_POSTS,
   DELETE_POST,
   POST_LOADING,
@@ -25,6 +26,11 @@ export default function(state = initialState, action) {
         posts: action.payload,
         loading: false
       };
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts]
+      };
     case ADD_COMMENT_SUCCESS:
       return {
         ...state,
@@ -36,11 +42,11 @@ export default function(state = initialState, action) {
         }),
         loading: false
       };
-    case ADD_POST:
+      case ADD_LIKE:
       return {
         ...state,
         posts: [action.payload, ...state.posts]
-      };
+      }
     case DELETE_POST:
       return {
         ...state,

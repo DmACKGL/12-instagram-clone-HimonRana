@@ -2,12 +2,14 @@ import axios from "axios";
 
 import {
   ADD_POST,
+  ADD_LIKE,
   GET_POSTS,
   GET_POST,
   ADD_COMMENT_SUCCESS,
   POST_LOADING,
   DELETE_POST,
   DELETE_COMMENT,
+  DELETE_LIKE,
   GET_ERRORS
 } from "./types";
 
@@ -42,7 +44,6 @@ export const getPosts = () => dispatch => {
 
 // Add Comment
 export const addComment = (postId, commentData) => dispatch => {
-  console.log("action called");
   axios.post(`/posts/comment/${postId}`, commentData).then(res => {
     console.log(commentData);
     let postId = res.data._id;
@@ -56,12 +57,6 @@ export const addComment = (postId, commentData) => dispatch => {
       }
     });
   });
-  // .catch(err =>
-  //   dispatch({
-  //     type: ADD_COMMENT_FAIL,
-  //     payload: err.response.data
-  //   })
-  // )
 };
 
 // Delete Comment
@@ -121,9 +116,15 @@ export const deletePost = id => dispatch => {
 
 // Add Like
 export const addLike = id => dispatch => {
+  console.log("i LIKE IT");
   axios
     .post(`/posts/like/${id}`)
-    .then(res => dispatch(getPosts()))
+    .then(res =>
+      dispatch({
+        type: ADD_LIKE,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
