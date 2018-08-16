@@ -55,12 +55,4 @@ export class PhotoGrid extends Component {
   }
 }
 
-PhotoGrid.propTypes = {
-  posts: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  posts: state.post
-});
-
-export default connect(mapStateToProps)(PhotoGrid);
+export default connect(null)(PhotoGrid);

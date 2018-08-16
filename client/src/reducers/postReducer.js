@@ -1,8 +1,10 @@
 import {
   ADD_POST,
-  ADD_LIKE,
+  ADD_LIKE_SUCCESS,
   GET_POSTS,
   DELETE_POST,
+  DELETE_COMMENT,
+  DELETE_LIKE_SUCCESS,
   POST_LOADING,
   ADD_COMMENT_SUCCESS
 } from "../actions/types";
@@ -42,11 +44,23 @@ export default function(state = initialState, action) {
         }),
         loading: false
       };
-      case ADD_LIKE:
+    case DELETE_LIKE_SUCCESS:
+    case ADD_LIKE_SUCCESS:
       return {
         ...state,
-        posts: [action.payload, ...state.posts]
-      }
+        posts: state.posts.map((post, index) => {
+          if (action.payload._id == post._id) {
+            post = action.payload;
+          }
+          return post;
+        }),
+        loading: false
+      };
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        posts: action.payload
+      };
     case DELETE_POST:
       return {
         ...state,

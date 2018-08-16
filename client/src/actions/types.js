@@ -22,9 +22,8 @@ export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 // Likes
-export const ADD_LIKE = "ADD_LIKE";
-export const DELETE_LIKE = "DELETE_LIKE";
+export const ADD_LIKE_SUCCESS = "ADD_LIKE_SUCCESS";
+export const DELETE_LIKE_SUCCESS = "DELETE_LIKE_SUCCESS";
 
-
-
-
+export const ADD_LIKE_FAIL = "ADD_LIKE_FAIL";
+export const DELETE_LIKE_FAIL = "DELETE_LIKE_FAIL";

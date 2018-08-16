@@ -12,7 +12,8 @@ class Photo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: this.props.post
+      post: this.props.post,
+      user: this.props.auth
     };
   }
 
@@ -36,11 +37,9 @@ class Photo extends Component {
   }
 
   
-
-
-
   render() {
     const { post } = this.props;
+    const { user } = this.props;
 
     return (
       <article className="Photo__root">
@@ -58,7 +57,7 @@ class Photo extends Component {
             </div>
           </div>
           <div className="delete ml-auto">
-            {/* {post.user === auth.user.id ? (
+            {post.user === user.id ? (
               <button
                 onClick={this.onDeleteClick.bind(this, post._id)}
                 type="submit"
@@ -66,13 +65,13 @@ class Photo extends Component {
               >
                 <i className="fas fa-times" />
               </button>
-            ) : null} */}
+            ) : null}
           </div>
         </div>
         <div className="Photo__body">
           <img src={post.postImg} alt="" />
         </div>
-        <PostLikes post={post} />
+        <PostLikes post={post} user={user}/>
         <div className="Photo__comments container ml-2 mr-2 mt-2">
           <ul className="m-0">
             <li className="mb-2">

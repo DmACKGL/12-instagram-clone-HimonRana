@@ -11,11 +11,11 @@ class CommentDisplay extends Component {
 
   onDeleteClick(postId, commentId) {
     this.props.deleteComment(postId, commentId);
+    window.location.reload(false);
   }
 
   render() {
     const { comments, postId, auth } = this.props;
-    // console.log(this.props);
 
     return (
       <div>
@@ -33,7 +33,6 @@ class CommentDisplay extends Component {
                 {comment.user === auth.user.id ? (
                   <button
                     onClick={this.onDeleteClick.bind(this, postId, comment._id)}
-                    type="button"
                     className="deleteComment ml-1"
                   >
                     &#10008;

@@ -28,7 +28,7 @@ class PhotoFeed extends Component {
 
   render() {
     const { posts, loading } = this.props;
-console.log(posts);
+    const { user } = this.props.auth;
     let postContent;
 
     if (loading) {
@@ -38,6 +38,7 @@ console.log(posts);
         <Photo
           key={index}
           post={post}
+          user={user}
           onLikeClick={this.onLikeClick}
           onUnlikeClick={this.onUnlikeClick}
           deletePost={this.deletePost}
@@ -51,7 +52,8 @@ console.log(posts);
 
 const mapStateToProps = state => ({
   posts: state.post.posts,
-  loading: state.post.loading
+  loading: state.post.loading,
+  auth: state.auth
 });
 
 export default connect(
