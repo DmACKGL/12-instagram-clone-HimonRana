@@ -10,8 +10,8 @@ export const loginUser = (User) => dispatch => {
     .then(res => res.json())
     .then((res) => {
         localStorage.setItem('User', res.token);
-        console.log(res, 'Logged in now');
+        console.log(res.data);
     })
     .catch(err => 
-        console.log(err, 'Can not find the res.json()'))
+        console.log(err.response.data))
 }

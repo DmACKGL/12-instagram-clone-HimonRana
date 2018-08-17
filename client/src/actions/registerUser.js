@@ -1,4 +1,5 @@
 const registerUrl = '/auth/register';
+const errors = {};
 
 export const registerUser = (data) => dispatch => {
     return fetch(registerUrl, {
@@ -10,7 +11,7 @@ export const registerUser = (data) => dispatch => {
     .then(res => res.json())
     .then((res) => {
         localStorage.setItem('User', res.token);
-        console.log(res, 'Registered now');
+        console.log(res.data);
     })
-    .catch(err => console.log(err, 'Can not find the res.json()'))
+    .catch(err => console.log({errors: err.response.data}))
 }

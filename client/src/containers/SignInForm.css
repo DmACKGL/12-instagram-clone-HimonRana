@@ -1,10 +1,12 @@
 .signInDiv {
+  position: relative;
   margin: 0;
   padding: 0;
-  background: url('https://picsum.photos/1920/840/?random');
+  background: url("https://picsum.photos/1920/840/?random");
+  background-position: center;
   background-size: cover;
   max-width: 100%;
-  height: -webkit-fill-available;
+  height: 90vh;
 }
 
 .signInBox {
@@ -13,7 +15,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 350px;
-  height: 420px;
+  height: auto;
   padding: 80px 40px;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.8);
@@ -36,8 +38,8 @@
   border-radius: 50%;
   overflow: hidden;
   position: absolute;
-  top: calc(-100px/2);
-  left: calc(50% - 50px)
+  top: calc(-100px / 2);
+  left: calc(50% - 50px);
 }
 
 .SignInForm__root h2 {
@@ -48,7 +50,7 @@
 }
 
 .SignInForm__root input,
-.btn {
+.logInBtn {
   width: 100%;
   margin-bottom: 20px;
 }
@@ -57,13 +59,12 @@
 .password {
   margin: 0;
   border-bottom: 1px solid #fff;
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
 
-
-.btn,
-.btn:hover {
-  background-color: #ff267e;
+.logInBtn,
+.logInBtn:hover {
+  background-color: #b30048;
   margin-top: 2em;
   height: 40px;
   border: none;
@@ -71,10 +72,9 @@
   color: white;
   font-size: 16px;
   letter-spacing: 0.2px;
-  text-transform: capitalize;
 }
 
-.btn:disabled {
+.logInBtn:disabled {
   background-color: #d3d3d3;
   border-color: #d3d3d3;
   cursor: not-allowed;
@@ -84,6 +84,8 @@
 .SignInForm__error-text {
   color: #ed4956;
   font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
 
 .SignInForm__spinner {

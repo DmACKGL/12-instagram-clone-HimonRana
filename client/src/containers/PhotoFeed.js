@@ -1,41 +1,61 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import {
-  fetchPhotos
-} from 'actions';
-import { Photo } from "../components/Photo";
+  getPosts,
+  deletePost,
+  addLike,
+  removeLike
+} from "../actions/postActions";
+
+import { Photo } from "../components";
+import PhotoGrid from "./PhotoGrid";
+import Spinner from "../components/common/Spinner";
 
 class PhotoFeed extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.deletePost = this.deletePost.bind(this);
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchPhotos())
+    this.props.getPosts();
+  }
+
+  deletePost(Id) {
+    this.props.deletePost(Id);
   }
 
   render() {
-    const { photos } = this.props;
+    const { posts, loading } = this.props;
+    const { user } = this.props.auth;
+    let postContent;
 
-    return (
-      <ul className="frow column-center">
-        {
-          photos.map((photo) => (
-            <li key={photo.id}>
-              <Photo photo={photo} />
-            </li>
-          ))
-        }
-      </ul>
-    );
+    if (loading) {
+      postContent = <Spinner />;
+    } else {
+      postContent = posts.map((post, index) => (
+        <Photo
+          key={index}
+          post={post}
+          user={user}
+          deletePost={this.deletePost}
+        />
+      ));
+    }
+
+    return <div>{postContent}</div>;
   }
 }
 
 const mapStateToProps = state => ({
-  photos: state.photos
+  posts: state.post.posts,
+  loading: state.post.loading,
+  auth: state.auth
 });
 
-export default connect(mapStateToProps)(PhotoFeed);
+export default connect(
+  mapStateToProps,
+  { getPosts, deletePost, addLike, removeLike }
+)(PhotoFeed);
