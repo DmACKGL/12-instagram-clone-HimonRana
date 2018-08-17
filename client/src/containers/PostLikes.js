@@ -67,13 +67,6 @@ export class PostLikes extends Component {
           <button onClick={this.toggleLike} className="btn-outline-danger">
             {this.state.buttonText}
           </button>
-
-          {/* <button
-            onClick={this.onUnlikeClick.bind(this, post._id)}
-            className="btn-outline-secondary"
-          >
-            x
-          </button> */}
         </div>
         <div className="likes pl-4 pt-2">
           <p className="text-sm">{post.likes.length} Likes</p>

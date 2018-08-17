@@ -9,6 +9,7 @@ import {
 } from "../actions/postActions";
 
 import { Photo } from "../components";
+import PhotoGrid from "./PhotoGrid";
 import Spinner from "../components/common/Spinner";
 
 class PhotoFeed extends Component {
@@ -39,8 +40,6 @@ class PhotoFeed extends Component {
           key={index}
           post={post}
           user={user}
-          onLikeClick={this.onLikeClick}
-          onUnlikeClick={this.onUnlikeClick}
           deletePost={this.deletePost}
         />
       ));

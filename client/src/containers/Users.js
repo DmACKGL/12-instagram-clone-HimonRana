@@ -7,11 +7,15 @@ class Users extends Component {
     const { profile } = this.props;
     console.log(this.props);
 
+    const avatar = `https://api.adorable.io/avatars/100/${
+      profile.user.name
+    }@adorable.png`;
+
     return (
       <div className="card card-body bg-light mb-3 ">
         <div className="row d-flex justify-content-center">
           <div className="col-6">
-            <img src={profile.imgUrl} alt="" className="rounded-circle profileAvatar" />
+            <img src={(profile === null || profile.imgUrl === "") ? avatar : profile.imgUrl} alt="" className="rounded-circle profileAvatar" />
           </div>
           <div className="col-6 profileContent">
             <h4 className="mb-2">{profile.user.name}</h4>

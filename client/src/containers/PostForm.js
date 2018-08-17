@@ -30,7 +30,6 @@ class PostForm extends Component {
     e.preventDefault();
 
     const { profile } = this.props.profile;
-    console.log(profile);
 
     const postData = {
       name: profile.user.name,
@@ -42,7 +41,6 @@ class PostForm extends Component {
     this.props.addPost(postData);
     this.setState({ text: "", postImg: "" });
     this.props.history.push("/home");
-    console.log(postData);
   }
 
   render() {

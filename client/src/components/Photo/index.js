@@ -40,15 +40,19 @@ class Photo extends Component {
   render() {
     const { post } = this.props;
     const { user } = this.props;
+    
+    const avatar = `https://api.adorable.io/avatars/100/${
+      post.name
+    }@adorable.png`;
 
     return (
       <article className="Photo__root">
         <div className="Photo-header">
           <div className="Photo-header__avatar-container">
             <img
-              src="https://picsum.photos/100/100/?random"
+              src={avatar}
               className="Photo-header__avatar-img rounded-circle"
-              alt={`${"username"} profile`}
+              alt={`${post.name} profile`}
             />
           </div>
           <div className="Photo-header__metadata-container">

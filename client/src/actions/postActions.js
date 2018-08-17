@@ -47,7 +47,6 @@ export const getPosts = () => dispatch => {
 // Add Comment
 export const addComment = (postId, commentData) => dispatch => {
   axios.post(`/posts/comment/${postId}`, commentData).then(res => {
-    console.log(commentData);
     let postId = res.data._id;
     let comment = commentData;
 
@@ -62,22 +61,6 @@ export const addComment = (postId, commentData) => dispatch => {
 };
 
 // Delete Comment
-// export const deleteComment = (postId, commentId) => dispatch => {
-//   axios.delete(`posts/comment/${postId}/${commentId}`).then(res => {
-//     console.log(commentId);
-//     let postId = res.data._id;
-//     let comment = commentId;
-
-//     return dispatch({
-//       type: DELETE_COMMENT,
-//       payload: {
-//         postId: postId,
-//         comment: comment
-//       }
-//     });
-//   });
-// };
-
 export const deleteComment = (postId, commentId) => dispatch => {
   axios
     .delete(`posts/comment/${postId}/${commentId}`)
@@ -136,7 +119,6 @@ export const deletePost = id => dispatch => {
 
 // Add Like
 export const addLike = id => dispatch => {
-  console.log("i LIKE IT");
   axios
     .post(`/posts/like/${id}`, {})
     .then(res =>

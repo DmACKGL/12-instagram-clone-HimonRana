@@ -1,13 +1,18 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import PhotoFeed from "./PhotoFeed";
+import { getPosts } from "../actions/postActions";
 
 import "./PhotoGrid.css";
 
 export class PhotoGrid extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     // const { post } = this.props;
-    console.log(this.props.postImg);
+    console.log(this.props);
     return (
       <div>
         <div className="grid-container">

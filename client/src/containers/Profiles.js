@@ -31,10 +31,7 @@ export class Profiles extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4 text-center">Buntstagram Profiles</h1>
-              <p className="lead text-center">
-                Browse and connect with Buntstagramers
-              </p>
+              <h1 className="display-4 text-center mb-4">Buntstagram Profiles</h1>
               {profileItems}
             </div>
           </div>

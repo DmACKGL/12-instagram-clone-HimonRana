@@ -29,8 +29,9 @@ class ProfileInfo extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
-    console.log(profile);
-    console.log(user);
+    console.log(this.props);
+
+
     const avatar = `https://api.adorable.io/avatars/100/${
       user.name
     }@adorable.png`;
@@ -84,6 +85,7 @@ ProfileInfo.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  posts: state.post.posts,
   profile: state.profile,
   auth: state.auth
 });
